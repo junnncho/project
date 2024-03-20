@@ -1,0 +1,8 @@
+export * as Action from "./<%= Model %>.Action";
+export { <%= Model %>Edit as Edit } from "./<%= Model %>.Edit";
+export { <%= Model %>List as List } from "./<%= Model %>.List";
+export { <%= Model %>Item as Item } from "./<%= Model %>.Item";
+export { <%= Model %>Stat as Stat } from "./<%= Model %>.Stat";
+export { <%= Model %>View as View } from "./<%= Model %>.View";
+export { <%= Model %>Menu as Menu } from "./<%= Model %>.Menu";
+export { <%= Model %>Loading as Loading } from "./<%= Model %>.Loading";

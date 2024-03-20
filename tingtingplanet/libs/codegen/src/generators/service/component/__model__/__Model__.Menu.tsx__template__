@@ -1,0 +1,10 @@
+import { AiOutlineWarning } from "react-icons/ai";
+import { DataMenuItem } from "@shared/util-client";
+import * as <%= Model %> from ".";
+
+export const <%= Model %>Menu: DataMenuItem = {
+  key: "<%= model %>",
+  label: "<%= Model %>",
+  icon: <AiOutlineWarning />, // ! need to be customized
+  render: () => <<%= Model %>.List />,
+};

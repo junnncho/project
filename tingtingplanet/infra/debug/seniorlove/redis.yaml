@@ -1,0 +1,307 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-svc
+  namespace: seniorlove-debug
+  labels:
+    app: redis
+spec:
+  ports:
+    - port: 6379
+  clusterIP: None
+  selector:
+    app: redis
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-cfg
+  namespace: seniorlove-debug
+  labels:
+    app: redis
+data:
+  master.conf: |
+    # maxmemory 400mb
+    # maxmemory-policy allkeys-lru
+    bind 0.0.0.0
+    maxclients 20000
+    timeout 0
+    appendonly no
+    dbfilename dump.rdb
+    dir /data
+  slave.conf: |
+    bind 0.0.0.0
+    slaveof redis-0.redis-svc.seniorlove-debug 6379
+    # maxmemory 400mb
+    # maxmemory-policy allkeys-lru
+    maxclients 20000
+    timeout 0
+    dir /data
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  namespace: seniorlove-debug
+spec:
+  serviceName: redis-svc
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/database: "true"
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - redis
+              topologyKey: "kubernetes.io/hostname"
+      initContainers:
+        - name: init-redis
+          image: redis:latest
+          command:
+            - bash
+            - "-c"
+            - |
+              set -ex
+              # Generate redis server-id from pod ordinal index.
+              [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
+              ordinal=${BASH_REMATCH[1]}
+              # Copy appropriate redis config files from config-map to respective directories.
+              if [[ $ordinal -eq 0 ]]; then
+                cp /mnt/master.conf /etc/redis-config.conf
+              else
+                cp /mnt/slave.conf /etc/redis-config.conf
+              fi
+          volumeMounts:
+            - name: redis-claim
+              mountPath: /etc
+            - name: config-map
+              mountPath: /mnt/
+      containers:
+        - name: redis
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+              name: redis
+          command:
+            - redis-server
+            - "/etc/redis-config.conf"
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+            - name: redis-claim
+              mountPath: /etc
+      volumes:
+        - name: config-map
+          configMap:
+            name: redis-cfg
+  volumeClaimTemplates:
+    - metadata:
+        name: redis-claim
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+        selector:
+          matchLabels:
+            namespace: seniorlove-debug
+            database: redis
+            type: claim
+        storageClassName: default
+    - metadata:
+        name: redis-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+        selector:
+          matchLabels:
+            namespace: seniorlove-debug
+            database: redis
+            type: data
+        storageClassName: default
+---
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: v1
+    kind: PersistentVolume
+    metadata:
+      labels:
+        namespace: seniorlove-debug
+        database: redis
+        type: data
+      name: seniorlove-debug-redis-data-volume-0
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      capacity:
+        storage: 1Gi
+      hostPath:
+        path: /root/kubernetes/seniorlove-debug/redis/data-0
+        type: ""
+      # nodeAffinity:
+      #   required:
+      #     nodeSelectorTerms:
+      #     - matchExpressions:
+      #       - key: kubernetes.io/arch
+      #         operator: In
+      #         values:
+      #         - amd64
+      persistentVolumeReclaimPolicy: Delete
+      storageClassName: default
+      volumeMode: Filesystem
+  # - apiVersion: v1
+  #   kind: PersistentVolume
+  #   metadata:
+  #     labels:
+  #       namespace: seniorlove-debug
+  #       database: redis
+  #       type: data
+  #     name: seniorlove-debug-redis-data-volume-1
+  #   spec:
+  #     accessModes:
+  #     - ReadWriteOnce
+  #     capacity:
+  #       storage: 1Gi
+  #     hostPath:
+  #       path: /root/kubernetes/seniorlove-debug/redis/data-1
+  #       type: ""
+  #     persistentVolumeReclaimPolicy: Delete
+  #     storageClassName: default
+  #     volumeMode: Filesystem
+  # - apiVersion: v1
+  #   kind: PersistentVolume
+  #   metadata:
+  #     labels:
+  #       namespace: seniorlove-debug
+  #       database: redis
+  #       type: data
+  #     name: seniorlove-debug-redis-data-volume-2
+  #   spec:
+  #     accessModes:
+  #     - ReadWriteOnce
+  #     capacity:
+  #       storage: 1Gi
+  #     hostPath:
+  #       path: /root/kubernetes/seniorlove-debug/redis/data-2
+  #       type: ""
+  #     persistentVolumeReclaimPolicy: Delete
+  #     storageClassName: default
+  #     volumeMode: Filesystem
+  - apiVersion: v1
+    kind: PersistentVolume
+    metadata:
+      labels:
+        namespace: seniorlove-debug
+        database: redis
+        type: claim
+      name: seniorlove-debug-redis-claim-volume-0
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      capacity:
+        storage: 1Gi
+      hostPath:
+        path: /root/kubernetes/seniorlove-debug/redis/claim-0
+        type: ""
+      persistentVolumeReclaimPolicy: Delete
+      storageClassName: default
+      volumeMode: Filesystem
+# - apiVersion: v1
+#   kind: PersistentVolume
+#   metadata:
+#     labels:
+#       namespace: seniorlove-debug
+#       database: redis
+#       type: claim
+#     name: seniorlove-debug-redis-claim-volume-1
+#   spec:
+#     accessModes:
+#     - ReadWriteOnce
+#     capacity:
+#       storage: 1Gi
+#     hostPath:
+#       path: /root/kubernetes/seniorlove-debug/redis/claim-1
+#       type: ""
+#     persistentVolumeReclaimPolicy: Delete
+#     storageClassName: default
+#     volumeMode: Filesystem
+# - apiVersion: v1
+#   kind: PersistentVolume
+#   metadata:
+#     labels:
+#       namespace: seniorlove-debug
+#       database: redis
+#       type: claim
+#     name: seniorlove-debug-redis-claim-volume-2
+#   spec:
+#     accessModes:
+#     - ReadWriteOnce
+#     capacity:
+#       storage: 1Gi
+#     hostPath:
+#       path: /root/kubernetes/seniorlove-debug/redis/claim-2
+#       type: ""
+#     persistentVolumeReclaimPolicy: Delete
+#     storageClassName: default
+#     volumeMode: Filesystem
+---
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: redis-svc-0
+      namespace: seniorlove-debug
+    spec:
+      type: NodePort
+      selector:
+        statefulset.kubernetes.io/pod-name: redis-0
+      ports:
+        - protocol: TCP
+          nodePort: 30305
+          port: 30305
+          targetPort: 6379
+  # - apiVersion: v1
+  #   kind: Service
+  #   metadata:
+  #     name: redis-svc-1
+  #     namespace: seniorlove-debug
+  #   spec:
+  #     type: NodePort
+  #     selector:
+  #       statefulset.kubernetes.io/pod-name: redis-1
+  #     ports:
+  #       - protocol: TCP
+  #         nodePort: 30306
+  #         port: 30306
+  #         targetPort: 6379
+  # - apiVersion: v1
+  #   kind: Service
+  #   metadata:
+  #     name: redis-svc-2
+  #     namespace: seniorlove-debug
+  #   spec:
+  #     type: NodePort
+  #     selector:
+  #       statefulset.kubernetes.io/pod-name: redis-2
+  #     ports:
+  #       - protocol: TCP
+  #         nodePort: 30307
+  #         port: 30307
+  #         targetPort: 6379

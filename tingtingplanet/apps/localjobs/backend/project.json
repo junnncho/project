@@ -1,0 +1,61 @@
+{
+  "name": "localjobs/backend",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/localjobs/backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/localjobs/backend",
+        "main": "apps/localjobs/backend/src/main.ts",
+        "tsConfig": "apps/localjobs/backend/tsconfig.app.json",
+        "isolatedConfig": true,
+        "webpackConfig": "apps/localjobs/backend/webpack.config.js",
+        "generatePackageJson": true
+      }
+    },
+    "script": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cross-env  ENVIRONMENT={args.env} ts-node --project tsconfig.app.json -r tsconfig-paths/register --transpile-only ./src/{args.file}.ts "
+        ],
+        "cwd": "apps/localjobs/backend",
+        "parallel": false
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "localjobs/backend:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/localjobs/backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/localjobs/backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

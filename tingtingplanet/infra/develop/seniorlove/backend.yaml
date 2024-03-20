@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-federation-deployment
+  namespace: seniorlove-develop
+  labels:
+    app: backend-federation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-federation
+  template:
+    metadata:
+      labels:
+        app: backend-federation
+    spec:
+      containers:
+        - name: backend-federation
+          image: registry.tingting.com/tingting/seniorlove/backend:develop-live
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          # resources:
+          #   requests:
+          #     memory: 250M
+          #     cpu: 250
+          #   limits:
+          #     memory: 1G
+          #     cpu: 500
+          env:
+            - name: SERVER_ENV
+              value: develop
+            - name: SERVER_MODE
+              value: federation
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-batch-deployment
+  namespace: seniorlove-develop
+  labels:
+    app: backend-batch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-batch
+  template:
+    metadata:
+      labels:
+        app: backend-batch
+    spec:
+      containers:
+        - name: backend-batch
+          image: registry.tingting.com/tingting/seniorlove/backend:develop-live
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          # resources:
+          #   requests:
+          #     memory: 250M
+          #     cpu: 250
+          #   limits:
+          #     memory: 1G
+          #     cpu: 500
+          env:
+            - name: SERVER_ENV
+              value: develop
+            - name: SERVER_MODE
+              value: batch
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: seniorlove-develop
+spec:
+  selector:
+    app: backend-federation
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

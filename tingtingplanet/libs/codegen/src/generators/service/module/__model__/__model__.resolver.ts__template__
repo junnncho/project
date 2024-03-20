@@ -1,0 +1,14 @@
+import { Resolver, Query, Mutation, Args, ResolveField, Parent, Int, ID } from "@nestjs/graphql";
+import { <%= Model %>Service } from "./<%= model %>.service";
+import { Allow, Account, BaseResolver } from "@shared/util-server";
+import * as db from "../db";
+import * as gql from "../gql";
+import * as srv from "../srv";
+import { UseGuards } from "@nestjs/common";
+
+@Resolver(() => gql.<%= Model %>)
+export class <%= Model %>Resolver extends BaseResolver(gql.<%= Model %>, gql.<%= Model %>Input, Allow.Every, Allow.Every, Allow.Every) {
+  constructor(private readonly <%= model %>Service: <%= Model %>Service, private readonly fileService: srv.shared.FileService) {
+    super(<%= model %>Service);
+  }
+}

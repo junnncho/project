@@ -1,0 +1,22 @@
+import { gql, st, slice, useLocale } from "<%= dataAccessPath %>";
+import { DataDashboard } from "@shared/ui-web";
+import { ModelDashboardProps } from "@shared/util-client";
+
+export const <%= Model %>Stat = ({
+  className,
+  summary,
+  slice = st.slice.<%= model %>,
+  queryMap = gql.<%= model %>QueryMap,
+  hidePresents,
+}: ModelDashboardProps<slice.<%= Model %>Slice, gql.<%= Model %>Summary>) => {
+  return (
+    <DataDashboard
+      className={className}
+      summary={summary}
+      slice={slice}
+      queryMap={queryMap}
+      columns={["total<%= Model %>"]}
+      hidePresents={hidePresents}
+    />
+  );
+};

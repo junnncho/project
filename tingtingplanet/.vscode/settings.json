@@ -1,0 +1,8 @@
+{
+  "testing.saveBeforeTest": false,
+  "jest.autoRun": "false",
+  "jestTestExplorer.flattenExplorer": false,
+  "eslint.validate": ["json"],
+  "prettier.configPath": ".prettierrc.json",
+  "tailwindCSS.classAttributes": ["class", "className", ".*Class", ".*ClassName"]
+}

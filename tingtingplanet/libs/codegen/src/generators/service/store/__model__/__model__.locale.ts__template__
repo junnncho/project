@@ -1,0 +1,10 @@
+import { <%= Model %>, <%= Model %>Summary } from "./<%= model %>.gql";
+import { baseLocale, Locale } from "@shared/util-client";
+
+export const <%= model %>Locale = {
+  ...baseLocale,
+  field: ["Field", "필드"], // 샘플
+  total<%= Model %>: ["Total<%= Model %>", "총 모델"], // 모델명 수정 필요
+} as const;
+
+export type <%= Model %>Locale = Locale<"<%= model %>", <%= Model %> & <%= Model %>Summary, typeof <%= model %>Locale>;

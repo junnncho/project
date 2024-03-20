@@ -1,0 +1,42 @@
+import { Locale, baseLocale } from "@shared/util-client";
+import { Story, StorySummary } from "./story.gql";
+
+export const storyLocale = {
+  ...baseLocale,
+  board: ["Board", "보드"],
+  root: ["Root", "루트"],
+  rootType: ["RootType", "루트타입"],
+  parent: ["Parent", "부모"],
+  parentType: ["ParentType", "부모타입"],
+  category: ["Category", "카테고리"],
+  type: ["Type", "타입"],
+  user: ["User", "작성자"],
+  title: ["Title", "제목"],
+  content: ["Content", "콘텐츠"],
+  thumbnails: ["Thumbnails", "썸네일"],
+  logo: ["Logo", "로고"],
+  policy: ["Policy", "정책"],
+  images: ["Images", "이미지"],
+  parentCreatedAt: ["ParentCreatedAt", "부모 생성일"],
+  totalStat: ["TotalStat", "전체 통계"],
+  view: ["View", "조회수"],
+  like: ["Like", "추천"],
+  dislike: ["Dislike", "비추"],
+  comment: ["Comment", "댓글"],
+  isNew: ["IsNew", "새글"],
+  isViewable: ["IsViewable", "조회가능"],
+  setLike: ["SetLike", "좋아요수행"],
+  resetLike: ["ResetLike", "좋아요취소"],
+  unlike: ["Unlike", "싫어요"],
+  write: ["Write", "글쓰기"],
+  totalStory: ["Total Story", "총 게시글수"],
+  activeStory: ["Active Story", "미처리 게시글수"],
+  approvedStory: ["Approved Story", "승인 게시글수"],
+  deniedStory: ["Denied Story", "거절 게시글수"],
+  haStory: ["Hourly Story", "시간당 게시글수"],
+  daStory: ["Daily Story", "일간 게시글수"],
+  waStory: ["Weekly Story", "주간 게시글수"],
+  maStory: ["Monthly Story", "월간 게시글수"],
+} as const;
+
+export type StoryLocale = Locale<"story", Story & StorySummary, typeof storyLocale>;

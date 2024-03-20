@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# npm run format
+NEED_FIX=$(nx print-affected --select=projects --base=HEAD)
+PROJECTS=$(echo $NEED_FIX | tr -d ' ')
+echo $PROJECTS
+pnpm nx run-many --target=lint --fix --projects=$PROJECTS --parallel=10

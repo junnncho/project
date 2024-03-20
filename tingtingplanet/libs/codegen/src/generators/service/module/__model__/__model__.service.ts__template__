@@ -1,0 +1,23 @@
+import { Injectable, Logger, Inject, forwardRef } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import * as <%= Model %> from "./<%= model %>.model";
+import * as fs from "fs";
+import { LoadService } from "@shared/util-server";
+import { Utils } from "@shared/util";
+import * as db from "../db";
+import * as gql from "../gql";
+
+@Injectable()
+export class <%= Model %>Service extends LoadService<<%= Model %>.Mdl, <%= Model %>.Doc, <%= Model %>.Input> {
+  constructor(
+    @InjectModel(<%= Model %>.name)
+    private readonly <%= Model %>: <%= Model %>.Mdl
+  ) {
+    super(<%= Model %>Service.name, <%= Model %>);
+  }
+  async summarize(): Promise<gql.<%= Model %>Summary> {
+    return {
+      total<%= Model %>: await this.<%= Model %>.countDocuments({ status: { $ne: "inactive" } }),
+    };
+  }
+}

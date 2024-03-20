@@ -1,0 +1,14 @@
+import { Skeleton } from "@shared/ui-web";
+import { useLocale } from "<%= dataAccessPath %>";
+
+interface <%= Model %>LoadingProps {
+  className?: string;
+}
+export const <%= Model %>Loading = ({ className }: <%= Model %>LoadingProps) => {
+  const { l } = useLocale();
+  return (
+    <div className={className}>
+      <Skeleton active />
+    </div>
+  );
+};

@@ -1,0 +1,14 @@
+import { Id } from "@shared/util-server";
+import { TestingModule } from "@nestjs/testing";
+import * as Chance from "chance";
+import * as srv from "../srv";
+import * as gql from "../gql";
+const c = new Chance();
+export const <%= model %>Input = (): gql.<%= Model %>Input => ({
+} as any);
+
+export const create<%= Model %> = async (app: TestingModule) => {
+  const <%= model %>Service = app.get<srv.<%= Model %>Service>(srv.<%= Model %>Service);
+  const <%= model %> = await <%= model %>Service.create(<%= model %>Input());
+  return <%= model %>;
+};

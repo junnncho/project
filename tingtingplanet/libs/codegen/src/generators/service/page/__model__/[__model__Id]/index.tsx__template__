@@ -1,0 +1,18 @@
+import { UserLayout } from "<%= appRoot %>/components";
+import { <%= Model %> } from "<%= uiWebPath %>";
+import { gql, st } from "<%= appRoot %>/stores";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+
+export default function Page() {
+  const <%= model %>Id = useSearchParams().get("<%= model %>Id") as string;
+  const <%= model %> = st.use.<%= model %>();
+  useEffect(() => {
+    st.do.view<%= Model %>(<%= model %>Id);
+  }, []);
+  return (
+    <UserLayout title={`<%= Model %>-New`}>
+      {<%= model %> === "loading" ? <<%= Model %>.Loading /> : <<%= Model %>.View slice={st.slice.<%= model %>} <%= model %>={<%= model %>} />}
+    </UserLayout>
+  );
+}

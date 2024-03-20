@@ -1,0 +1,35 @@
+{
+  "name": "external/module",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/external/module/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/external/module",
+        "tsConfig": "libs/external/module/tsconfig.lib.json",
+        "packageJson": "libs/external/module/package.json",
+        "main": "libs/external/module/src/index.ts",
+        "assets": ["libs/external/module/*.md", "libs/external/module/**/*.jpg"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/external/module/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/external/module"],
+      "options": {
+        "jestConfig": "libs/external/module/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

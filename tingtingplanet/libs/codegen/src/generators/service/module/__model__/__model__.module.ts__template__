@@ -1,0 +1,13 @@
+import { Global, Module, DynamicModule, forwardRef } from "@nestjs/common";
+import { MongooseModule } from "@nestjs/mongoose";
+import * as <%= Model %> from "./<%= model %>.model";
+import { <%= Model %>Service } from "./<%= model %>.service";
+import { <%= Model %>Resolver } from "./<%= model %>.resolver";
+
+@Global()
+@Module({
+  imports: [MongooseModule.forFeatureAsync([{ name: <%= Model %>.name, useFactory: <%= Model %>.middleware() }])],
+  providers: [<%= Model %>Service, <%= Model %>Resolver],
+  exports: [<%= Model %>Service],
+})
+export class <%= Model %>Module {}

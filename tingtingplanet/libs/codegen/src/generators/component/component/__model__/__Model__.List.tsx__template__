@@ -1,0 +1,51 @@
+import { st, gql, slice, useLocale } from "<%= dataAccessPath %>";
+import { DataEditModal, DataListContainer, DataTableList } from "@shared/ui-web";
+import { DefaultOf, ModelsProps, pageMap, PageMap } from "@shared/util-client";
+import * as <%= Model %> from ".";
+
+export const <%= Model %>List = ({ slice = st.slice.<%= model %>, init }: ModelsProps<slice.<%= Model %>Slice, gql.<%= Model %>>) => {
+  return (
+    <DataListContainer
+      init={init}
+      slice={slice}
+      renderItem={<%= Model %>.Item}
+      renderDashboard={<%= Model %>.Stat}
+      queryMap={gql.<%= model %>QueryMap}
+      edit={
+        <DataEditModal slice={slice} renderTitle={(<%= model %>: DefaultOf<gql.<%= Model %>>) => `${<%= model %>.field}`}>
+        <<%= Model %>.Edit slice={slice} />
+        </DataEditModal>
+      }
+      type="list"
+      columns={[
+        "type",
+        { key: "field", render: (field: string) => <span>{field}</span> },
+        "status",
+        "createdAt",
+      ]}
+      actions={(<%= model %>: gql.Light<%= Model %>, idx) => [
+        "remove",
+        "edit",
+        { type: "approve", render: () => <<%= Model %>.Action.Approve <%= model %>={<%= model %>} idx={idx} slice={slice} /> },
+      ]}
+    />
+  );
+};
+
+// ! 샘플용 리스트입니다. 수정 또는 삭제가 필요합니다.
+const <%= Model %>ListInSelf = ({ slice = st.slice.<%= model %>, self }: { slice?: slice.<%= Model %>Slice; self: gql.shared.User }) => {
+  const { t } = useTranslation();
+  if (!self.id) {
+    window.alert(`로그인이 필요합니다.`);
+    Router.push(pageMap.getUnauthorized());
+  }
+  return (
+    <DataTableList
+      slice={slice}
+      init={{ query: { from: self.id } }}
+      columns={["id", "createdAt", "status"]}
+      onItemClick={(<%= model %>: gql.Light<%= Model %>) => Router.push(`<%= model %>/${<%= model %>.id}`)}
+    />
+  );
+};
+<%= Model %>List.InSelf = <%= Model %>ListInSelf;

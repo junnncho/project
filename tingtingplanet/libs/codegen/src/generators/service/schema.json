@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "Service",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "modelName": {
+      "type": "string",
+      "description": "Model name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What is the name of model? (e.g. user)"
+    },
+    "modulePath": {
+      "type": "string",
+      "description": "[NEST_Module] Backend module path to create the service in",
+      "x-prompt": {
+        "message": "[NEST_Module] Select the module to create the service in",
+        "items": [
+          {
+            "value": "apps/localjobs/backend/src/module",
+            "label": "localjobs/backend"
+          },
+          {
+            "value": "apps/seniorlove/backend/src/module",
+            "label": "seniorlove/backend"
+          },
+          {
+            "value": "libs/social/module/src",
+            "label": "@social/module"
+          },
+          {
+            "value": "libs/shared/module/src",
+            "label": "@shared/module"
+          }
+        ]
+      }
+    }
+  },
+  "required": ["modelName", "modulePath"]
+}

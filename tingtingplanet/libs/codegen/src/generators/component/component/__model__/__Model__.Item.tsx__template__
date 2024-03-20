@@ -1,0 +1,17 @@
+import { st, gql, slice, useLocale } from "<%= dataAccessPath %>";
+import { DataItem } from "@shared/ui-web";
+import { ModelProps } from "@shared/util-client";
+import { twMerge } from "tailwind-merge";
+
+export const <%= Model %>Item = ({ className, <%= model %>, slice = st.slice.<%= model %>, actions, columns }: ModelProps<slice.<%= Model %>Slice, gql.Light<%= Model %>>) => {
+  return (
+    <DataItem
+      className={className}
+      title={`${<%= model %>.type}-${<%= model %>.title}`}
+      model={<%= model %>}
+      slice={slice}
+      actions={actions}
+      columns={columns}
+    />
+  );
+};

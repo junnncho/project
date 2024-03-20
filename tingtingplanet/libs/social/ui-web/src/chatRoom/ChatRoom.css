@@ -1,0 +1,27 @@
+.chat-end .chat-bubble:before {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+[dir="rtl"] .chat-end .chat-bubble:before {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.chat-start .chat-bubble:before {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+[dir="rtl"] .chat-start .chat-bubble:before {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.chat-start .topChat {
+  border-bottom-left-radius: 4px;
+}
+.chat-start .middleChat {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.chat-start .bottomChat {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 1em;
+}

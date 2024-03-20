@@ -1,0 +1,7 @@
+{
+  "name": "social/ui-web",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@types/react-copy-to-clipboard": "^5.0.4"
+  }
+}

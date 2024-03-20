@@ -1,0 +1,33 @@
+import { <%= Model %>Service } from "./<%= model %>.service";
+import { TestSystem } from "@shared/test-server";
+
+import * as sample from "../sample";
+import * as db from "../db";
+import * as srv from "../srv";
+import * as gql from "../gql";
+import { registerModules } from "../module";
+describe("<%= Model %> Service", () => {
+  const system = new TestSystem();
+  let <%= model %>Service: <%= Model %>Service;
+  beforeAll(async () => {
+    const app = await system.init(registerModules(environment));
+    <%= model %>Service = app.get<<%= Model %>Service>(<%= Model %>Service);
+  });
+  afterAll(async () => await system.terminate());
+  let <%= model %>: db.<%= Model %>.Doc;
+
+  let input: gql.<%= Model %>Input;
+  it("Create <%= Model %>", async () => {
+    input = sample.<%= model %>Input();
+    <%= model %> = await <%= model %>Service.create(input);
+    expect(<%= model %>.status).toEqual("active");
+  });
+  it("Update <%= Model %>", async () => {
+    input = sample.<%= model %>Input();
+    <%= model %> = await <%= model %>Service.update(<%= model %>._id, input);
+  });
+  it("Remove <%= Model %>", async () => {
+    <%= model %> = await <%= model %>Service.remove(<%= model %>._id);
+    expect(<%= model %>.status).toEqual("inactive");
+  });
+});

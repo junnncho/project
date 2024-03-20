@@ -1,0 +1,44 @@
+{
+  "name": "social/ui-web",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/social/ui-web/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/social/ui-web",
+        "tsConfig": "libs/social/ui-web/tsconfig.lib.json",
+        "project": "libs/social/ui-web/package.json",
+        "entryFile": "libs/social/ui-web/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "swc",
+        "assets": [
+          {
+            "glob": "libs/social/ui-web/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/social/ui-web/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/social/ui-web"],
+      "options": {
+        "jestConfig": "libs/social/ui-web/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+"use client";
+export { slice as shared } from "@shared/data-access";
+export * from "./comment/comment.slice";
+export * from "./story/story.slice";
+export * from "./board/board.slice";
+export * from "./actionLog/actionLog.slice";
+export * from "./report/report.slice";
+export * from "./chatRoom/chatRoom.slice";
+export * from "./serviceDesk/serviceDesk.slice";
+export * from "./emoji/emoji.slice";
+export * from "./groupCall/groupCall.slice";
+export * from "./chatBoard/chatBoard.slice";

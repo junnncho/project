@@ -1,0 +1,18 @@
+# https://tech.madup.com/docker-registry/
+# mkdir -p auth && htpasswd -Bbn <id> <password> >> auth/htpasswd
+version: "3"
+services:
+  registry:
+    image: registry:2
+    container_name: registry
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    environment:
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    volumes:
+      - ~/registry/data:/data
+      - ~/registry/auth:/auth

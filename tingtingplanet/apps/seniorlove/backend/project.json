@@ -1,0 +1,61 @@
+{
+  "name": "seniorlove/backend",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/seniorlove/backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/seniorlove/backend",
+        "main": "apps/seniorlove/backend/src/main.ts",
+        "tsConfig": "apps/seniorlove/backend/tsconfig.app.json",
+        "isolatedConfig": true,
+        "webpackConfig": "apps/seniorlove/backend/webpack.config.js",
+        "generatePackageJson": true
+      }
+    },
+    "script": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cross-env  ENVIRONMENT={args.env} ts-node --project tsconfig.app.json -r tsconfig-paths/register --transpile-only ./src/{args.file}.ts "
+        ],
+        "cwd": "apps/seniorlove/backend",
+        "parallel": false
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "seniorlove/backend:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/seniorlove/backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/seniorlove/backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

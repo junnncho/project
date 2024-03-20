@@ -1,0 +1,21 @@
+import { gql, st, slice, useLocale } from "<%= dataAccessPath %>";
+import { Editor, OnlyAdmin, Input } from "@shared/ui-web";
+
+interface <%= Model %>EditProps {
+  <%= model %>Id?: string | null;
+  slice?: slice.<%= Model %>Slice;
+}
+
+// * 데이터 수정/생성 템플릿을 작성하세요. 외부에서 Modal, Div 등으로 컨테이너에 담을 용도로 Fragment(<></>) 기반으로 제작하세요.
+export const <%= Model %>Edit = ({ slice = st.slice.<%= model %>, <%= model %>Id = undefined }: <%= Model %>EditProps) => {
+  const <%= model %>Form = slice.use.<%= model %>Form();
+  const { l } = useLocale();
+  return (
+    <>
+      <div className="flex items-center mb-4">
+        <p className="w-20 mt-3">{l("<%= model %>.field")}</p>
+        <Input value={<%= model %>Form.field} onChange={(e) => slice.do.setFieldOn<%= Model %>(e.target.value)} />
+      </div>
+    </>
+  );
+};

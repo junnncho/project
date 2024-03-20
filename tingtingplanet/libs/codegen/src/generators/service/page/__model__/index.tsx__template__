@@ -1,0 +1,22 @@
+import { UserLayout } from "<%= appRoot %>/components";
+import { <%= Model %> } from "<%= uiWebPath %>";
+import { gql, st } from "<%= appRoot %>/stores";
+import Link from "next/link";
+import { useEffect } from "react";
+import { LoadItems } from "@shared/ui-web";
+
+export default function Page() {
+  return (
+    <UserLayout title={`<%= Model %>-New`}>
+      <LoadItems
+        slice={st.slice.<%= model %>}
+        loading={<<%= Model %>.Loading />}
+        renderItem={(<%= model %>: gql.Light<%= Model %>) => (
+          <Link href={`/<%= model %>/${<%= model %>.id}`}>
+            <<%= Model %>.Item slice={st.slice.<%= model %>} <%= model %>={<%= model %>} />
+          </Link>
+        )}
+      />
+    </UserLayout>
+  );
+}

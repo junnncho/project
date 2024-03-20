@@ -1,0 +1,11 @@
+import { addToStore } from "./store";
+import { makeStore } from "@shared/util-client";
+import { st as shared } from "@shared/data-access";
+import { st as social } from "@social/data-access";
+export const st = makeStore(addToStore);
+Object.assign(shared, st);
+Object.assign(social, st);
+export * as store from "./store";
+export * as slice from "./slice";
+export * as gql from "./gql";
+export * from "./locale";

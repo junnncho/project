@@ -1,0 +1,20 @@
+import { UserLayout } from "<%= appRoot %>/components";
+import { <%= Model %> } from "<%= uiWebPath %>";
+import { gql, st } from "<%= appRoot %>/stores";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { DataEditModal } from "@shared/ui-web";
+
+export default function Page() {
+  const router = useRouter();
+  useEffect(() => {
+    st.do.new<%= Model %>();
+  }, []);
+  return (
+    <UserLayout title={`<%= Model %>-New`}>
+      <DataEditModal slice={st.slice.<%= model %>} onCancel={() => router.back()} onSubmit={() => router.push("/<%= model %>")}>
+        <<%= Model %>.Edit slice={st.slice.<%= model %>} />
+      </DataEditModal>
+    </UserLayout>
+  );
+}

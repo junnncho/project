@@ -1,0 +1,45 @@
+# vi cluster-issuer.yaml
+# http://cigiko.cafe24.com/kubernetes-%ec%97%90%ec%84%9c-cert-manager%eb%a1%9c-%eb%ac%b4%eb%a3%8c-letsencrypt-%ec%9d%b8%ec%a6%9d%ec%84%9c-%eb%b0%9c%ea%b8%89-%ec%84%a4%ec%a0%95/
+# https://www.vultr.com/docs/how-to-deploy-a-next-js-application-with-vultr-kubernetes-engine-and-vultr-load-balancer#Part_3___Expose_the_Next_js_application_with_secure_SSL_certificates
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+  namespace: default
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: junnncho@tingting.com # 자신의 이메일 주소를 기재
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    # Enable the HTTP-01 challenge provider
+    solvers:
+      # An empty 'selector' means that this solver matches all domains
+      - selector: {}
+        http01:
+          ingress:
+            class: nginx # 자신의 ingress 컨트롤러 타입 기재
+
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+  namespace: default
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: junnncho@tingting.com # 자신의 이메일 주소를 기재
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    # Enable the HTTP-01 challenge provider
+    solvers:
+      - http01:
+          ingress:
+            class: nginx # 자신의 ingress 컨트롤러 타입 기재

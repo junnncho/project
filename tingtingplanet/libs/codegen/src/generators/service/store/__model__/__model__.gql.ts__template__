@@ -1,0 +1,55 @@
+import graphql from "graphql-tag";
+import { cnst } from "@shared/util";
+import {
+  createGraphQL,
+  Field,
+  InputType,
+  ObjectType,
+  BaseGql,
+  Int,
+  Float,
+  PickType,
+} from "@shared/util-client";
+import { gql as shared } from "@shared/data-access";
+
+@InputType("<%= Model %>Input")
+export class <%= Model %>Input {
+  @Field(() => String)
+  field: string;
+}
+
+@ObjectType("<%= Model %>", { _id: "id" })
+export class <%= Model %> extends BaseGql(<%= Model %>Input) {
+  @Field(() => String)
+  status: cnst.<%= Model %>Status;
+}
+
+@ObjectType("Light<%= Model %>", { _id: "id", gqlRef: "<%= Model %>" })
+export class Light<%= Model %> extends PickType(<%= Model %>, ["status"] as const) {}
+
+@ObjectType("<%= Model %>Summary")
+export class <%= Model %>Summary {
+  @Field(() => Int)
+  total<%= Model %>: number;
+}
+
+export const <%= model %>QueryMap: { [key in keyof <%= Model %>Summary]: any } = {
+  total<%= Model %>: { status: { $ne: "inactive" } },
+};
+
+export const <%= model %>GraphQL = createGraphQL("<%= model %>" as const, <%= Model %>, <%= Model %>Input, Light<%= Model %>);
+export const {
+  get<%= Model %>,
+  list<%= Model %>,
+  <%= model %>Count,
+  <%= model %>Exists,
+  create<%= Model %>,
+  update<%= Model %>,
+  remove<%= Model %>,
+  <%= model %>Fragment,
+  light<%= Model %>Fragment,
+  purify<%= Model %>,
+  crystalize<%= Model %>,
+  lightCrystalize<%= Model %>,
+  default<%= Model %>,
+} = <%= model %>GraphQL;

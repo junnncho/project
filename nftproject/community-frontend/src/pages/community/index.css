@@ -1,0 +1,26 @@
+.Unit .background .buttons > button {
+  transition-duration: 300ms;
+  border-color: #074ee8;
+  border: solid;
+}
+.Unit .background .buttons > button:hover {
+  background-color: white;
+  border-color: #074ee8;
+  color: #074ee8;
+}
+.Unit {
+  width: 42em;
+}
+.Unit .description {
+  font-weight: 600;
+  text-align: left;
+  margin-left: 5vh;
+  margin-bottom: 3vh;
+}
+
+.Unit .detail {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+  margin-top: 2em;
+}

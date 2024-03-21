@@ -1,0 +1,235 @@
+.land {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ProfileLand .land1 {
+  border-top-left-radius: 1em;
+}
+.ProfileLand .land3 {
+  border-top-right-radius: 1em;
+}
+.ProfileLand .land22 {
+  border-bottom-left-radius: 1em;
+}
+.ProfileLand .land25 {
+  border-bottom-right-radius: 1em;
+}
+
+.MainLand {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(16, 2.625em);
+  grid-template-rows: repeat(10, 2.625em);
+  grid-template-areas:
+    "a a a c c q q f f f f n n n n n"
+    "a a a c c q q f f f f n n n n n"
+    "a a a d d e e f f f f n n n n n"
+    "g p l d d e e f f f f n n n n n"
+    "i i i r r z z z z z z n n n n n"
+    "i i i r r z z z z z z o o o o o "
+    "i i i m m z z z z z z o o o o o"
+    "j j j m m b b b h h h o o o o o"
+    "j j j k k b b b h h h o o o o o"
+    "j j j k k b b b h h h o o o o o";
+
+  box-shadow: 1px 1px 1px 1px #aaaaaa;
+}
+
+.land1 {
+  grid-area: a;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land2 {
+  grid-area: b;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land3 {
+  grid-area: c;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land4 {
+  grid-area: d;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land5 {
+  grid-area: e;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land6 {
+  grid-area: f;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land7 {
+  grid-area: g;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land8 {
+  grid-area: h;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land9 {
+  grid-area: i;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land10 {
+  grid-area: j;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land11 {
+  grid-area: k;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land12 {
+  grid-area: l;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land13 {
+  grid-area: m;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land14 {
+  grid-area: n;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land15 {
+  grid-area: o;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land16 {
+  grid-area: p;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land17 {
+  grid-area: q;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land18 {
+  grid-area: r;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land19 {
+  grid-area: s;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land20 {
+  grid-area: t;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land21 {
+  grid-area: u;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land22 {
+  grid-area: v;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land23 {
+  grid-area: w;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land24 {
+  grid-area: A;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land25 {
+  grid-area: B;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land26 {
+  grid-area: C;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.land_main {
+  grid-area: z;
+  cursor: pointer;
+}
+.land_main .logo {
+  height: 100%;
+  object-fit: cover;
+  justify-self: center;
+}
+
+.ProfileLand {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(8, 3em);
+  grid-template-rows: repeat(16, 3em);
+  grid-template-areas:
+    "a a a a b b c c "
+    "a a a a b b c c"
+    "a a a a d e f f"
+    "a a a a g g f f"
+    "i i i j g g k k"
+    "i i i l l l k k"
+    "i i i l l l m m"
+    "n n n l l l m m"
+    "n n n o o o o o"
+    "n n n o o o o o"
+    "p p q o o o o o"
+    "p p r o o o o o"
+    "s s s o o o o o"
+    "s s s t t t u u"
+    "s s s t t t u u"
+    "v w h t t t A B";
+}
+
+@media (max-width: 1000px) {
+  .MainLand {
+    grid-template-columns: repeat(16, 6.625%);
+    grid-template-rows: repeat(10, 1em);
+  }
+}

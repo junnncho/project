@@ -1,0 +1,110 @@
+.HomeCarousel .element {
+  width: 5em;
+  height: 5em;
+  border-radius: 1em;
+}
+.HomeCarousel .Slider {
+  width: 30em;
+  height: 5em;
+}
+.HomeCarousel .Slider .box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.HomeCarousel .Provider {
+  display: flex;
+}
+
+.ProfileCarousel .element {
+  width: 8em;
+  height: 8em;
+  border-radius: 0.3em;
+}
+.ProfileCarousel .Slider {
+  width: 100%;
+  max-width: 34em;
+  height: 12em;
+}
+.ProfileCarousel .Slider .box {
+  display: flex;
+  justify-content: space-between;
+}
+.ProfileCarousel .Provider {
+  display: flex;
+  justify-content: center;
+}
+
+.PictureCarousel .element {
+  width: 100%;
+  height: 20em;
+  background-color: #aaaaaa4d;
+  object-fit: contain;
+}
+.PictureCarousel .Slider {
+  width: 100%;
+  height: 20em;
+}
+.PictureCarousel .Slider .box {
+  display: flex;
+  justify-content: space-between;
+}
+.PictureCarousel .Provider {
+  display: flex;
+}
+.backgrounded {
+  height: 100%;
+  margin-top: 1em;
+}
+
+.PostCarousel .element {
+  max-width: 80em;
+  height: 40em;
+  border-radius: 0.3em;
+}
+.PostCarousel .Slider {
+  width: 100%;
+  max-width: 80em;
+  height: 40em;
+}
+.Slider .deleteButton {
+  position: absolute;
+  top: 11em;
+  left: 1em;
+  z-index: 100;
+  font-size: medium;
+  background-color: #e5eeff;
+  transition-duration: 300ms;
+  border-radius: 1em;
+  color: blue;
+  margin-left: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 2em;
+}
+.Slider .deleteButton:hover {
+  background-color: blue;
+  border-color: #074ee8;
+  color: white;
+  transition-duration: 300ms;
+}
+
+.PostCarousel .carousel__inner-slide {
+  position: relative;
+}
+.PostCarousel .Slider .box {
+  display: flex;
+  justify-content: center;
+}
+.PostCarousel .Provider {
+  display: flex;
+  justify-content: center;
+}
+.PostCarousel .arrow {
+  z-index: 30000000;
+  /* height: 5em; */
+}
+.PostCarousel i {
+  font-size: 3.7em;
+  color: rgba(255, 255, 255, 0.414);
+}

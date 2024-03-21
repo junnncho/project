@@ -1,0 +1,681 @@
+.postcontainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.shadowcontainer {
+  border-radius: 1em;
+  box-shadow: 0px 1px 1px 1px #aaaaaa;
+}
+.reverse {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  height: 100%;
+}
+/* .postcontainer .post {
+  background-color: white;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  border: #aaaaaa 0.5px solid;
+  box-shadow: 1px 1px 1px 1px #aaaaaa;
+  margin-top: 1em;
+  border-radius: 1em;
+  transition-duration: 300ms;
+} */
+
+.postcontainer .post .disabled {
+  z-index: -1;
+  height: 0;
+  visibility: hidden;
+  padding-top: 0;
+  opacity: 0%;
+  /* margin-top: 1em; */
+  transition-duration: 300ms;
+}
+.postcontainer .post .contents {
+  padding: 1em;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  transition-duration: 300ms;
+}
+.postcontainer .post .marginbot {
+  margin-bottom: 1em;
+}
+.postcontainer .post .contents .texts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.postcontainer .post .postRangeSelects {
+  display: flex;
+  height: 2em;
+}
+.postcontainer .post .pbuttons .commu {
+  display: flex;
+  margin-right: auto;
+  border-radius: 0.5em;
+  align-items: center;
+  border: 1px solid rgb(99, 136, 212);
+  padding: 0.2em;
+  height: 100%;
+  padding-left: 0.5em;
+  transition-duration: 300ms;
+  font-size: 0.8em;
+}
+.postcontainer .post .pbuttons .commu:hover {
+  background-color: #e5eeff;
+  cursor: pointer;
+}
+.postcontainer .post .pbuttons .commu .commupic {
+  width: 2em;
+  height: 2em;
+  border-radius: 0.5em;
+}
+.postcontainer .post .contents .texts .group:hover {
+  background-color: #e5eeff;
+  transition-duration: 300ms;
+}
+.postcontainer .post .contents .texts .textinput {
+  border: none;
+  resize: none;
+  min-height: 4em;
+  padding-top: 1em;
+  font-size: 16px;
+  height: auto;
+}
+.postcontainer .post .contents .texts .textinput:focus {
+  outline: none;
+}
+.postcontainer .post .contents .texts .text .rafflereqcontainer {
+  width: 90%;
+  background-color: #e5eeff;
+  min-height: 5em;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5em;
+  border-radius: 1em;
+}
+.postcontainer .post .contents .texts .text .rafflereqcontainer .buttons {
+  background-color: inherit;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 1em;
+  border-radius: 1em;
+}
+.postcontainer
+  .post
+  .contents
+  .texts
+  .text
+  .rafflereqcontainer
+  .buttons
+  .acceptbutton {
+  border: blue 1px solid;
+  border-radius: 1em;
+  padding: 1em;
+  transition-duration: 300ms;
+}
+
+.postcontainer
+  .post
+  .contents
+  .texts
+  .text
+  .rafflereqcontainer
+  .buttons
+  .acceptbutton:hover {
+  background-color: blue;
+  color: white;
+  transition-duration: 300ms;
+}
+.postcontainer .post .contents .texts .rafflereqcontainer .req .sns {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+.postcontainer .post .contents .texts .rafflereqcontainer .req .sns .unitsns {
+  margin-top: 2em;
+  padding-top: 1em;
+  width: 80%;
+  border-top: #aaaaaa 1px solid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.postcontainer
+  .post
+  .contents
+  .texts
+  .rafflereqcontainer
+  .req
+  .sns
+  .unitsns
+  .checkbox {
+  margin-left: auto;
+}
+.postcontainer
+  .post
+  .contents
+  .texts
+  .rafflereqcontainer
+  .req
+  .sns
+  .profileimg {
+  width: 30px;
+  height: 30px;
+}
+
+.postcontainer .post .contents .texts .text {
+  margin-top: 1em;
+  margin-right: 0;
+  text-align: left;
+  font-size: 15px;
+  white-space: pre-wrap;
+}
+.postcontainer .post .contents .more {
+  opacity: 80%;
+  padding-left: auto;
+  margin-right: 1em;
+}
+.postcontainer .post .buttons {
+  padding-bottom: 0.2em;
+  padding-top: 0.2em;
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+.postcontainer .post .buttons > button {
+  height: 3em;
+  border-radius: 0.5em;
+  transition-property: background-color;
+  background-color: inherit;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 400ms;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.postcontainer .post .buttons .liked {
+  color: blue;
+  transition-duration: 300ms;
+}
+.postcontainer .post .buttons .disliked {
+  color: black;
+  transition-duration: 300ms;
+}
+.postcontainer .post .buttons .liked:hover {
+  cursor: pointer;
+}
+.postcontainer .post .buttons .disliked:hover {
+  cursor: pointer;
+}
+.postcontainer .post .buttons > button:hover {
+  background-color: #e5eeff;
+}
+.postcontainer .post .pbuttons {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0em 1em 0.5em 1em;
+  padding-top: 0;
+}
+.postcontainer .post .editButton {
+  font-size: medium;
+  background-color: var(--main-bg-color);
+  transition-duration: 300ms;
+  margin-left: 1em;
+  line-height: 0;
+  border-radius: 0.5em;
+  color: var(--main-button-bg-color);
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 2em;
+}
+.postcontainer .post .editButton:hover {
+  background-color: var(--main-button-bg-color);
+  color: var(--main-button-text-color);
+  transition-duration: 300ms;
+  cursor: pointer;
+}
+
+.postcontainer .post .editButton:disabled {
+  background-color: #aaaaaa;
+  color: white;
+  cursor: no-drop;
+}
+/* .postcontainer .post .postbutton {
+  background-color: #e5eeff;
+  color: blue;
+  border-radius: 1em;
+  transition-duration: 300ms;
+  font-size: medium;
+  margin-left: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 2em;
+}
+.postcontainer .post .pbuttons .postbutton:hover {
+  cursor: pointer;
+} */
+.active {
+  background-color: blue;
+  color: white;
+  border-radius: 1em;
+  transition-duration: 300ms;
+  font-size: medium;
+
+  margin-left: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 2em;
+}
+.active:hover {
+  cursor: pointer;
+}
+.postcontainer .post .comment {
+  white-space: pre-wrap;
+  z-index: 3;
+  max-height: 100000000000000em;
+  opacity: 100%;
+  margin-left: 1em;
+  padding-top: 0.3em;
+  margin-right: 3em;
+  display: flex;
+  flex-direction: column;
+  transition-duration: 300ms;
+  transition: max-height opacity 0.3s ease-in;
+}
+.postcontainer .post .commentcontainer {
+  z-index: 3;
+  max-height: 100000000000000em;
+  opacity: 100%;
+  display: flex;
+  padding-left: 2em;
+  flex-direction: column-reverse;
+  transition-duration: 300ms;
+  transition: max-height opacity 0.3s ease-in;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+.postcontainer .post .commentcontainer .disabled {
+  z-index: -1;
+  padding-top: 0;
+  opacity: 0%;
+  /* margin-top: 1em; */
+  visibility: hidden;
+  transition-duration: 300ms;
+}
+.postcontainer .post .comment .contents {
+  z-index: 10;
+  padding: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+.postcontainer .post .comment .contents .profilepic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.postcontainer .post .comment .contents .texts {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.postcontainer .post .comment .contents .text {
+  text-align: start;
+  background-color: #e5eeff;
+  min-height: 3em;
+  border-radius: 1em;
+  margin-left: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.postcontainer .post .comment .contents .text .meta {
+  font-weight: 500;
+}
+
+.postcontainer .post .replies {
+  z-index: -4;
+
+  white-space: pre-wrap;
+  opacity: 100%;
+  margin-left: 5em;
+  margin-right: 2em;
+  display: flex;
+  flex-direction: column;
+  transition-duration: 300ms;
+  transition: max-height opacity 0.3s ease-in;
+}
+.postcontainer .post .replies .contents {
+  /* z-index: 10; */
+  padding: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+.postcontainer .post .replies .contents .profilepic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.postcontainer .post .replies .contents .texts {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+.postcontainer .post .replies .contents .text {
+  text-align: start;
+  background-color: #e5eeff;
+  min-height: 3em;
+  border-radius: 1em;
+  margin-left: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  display: flex;
+  flex-direction: column;
+}
+/* .postcontainer .post .comment .profilepic{} */
+
+.postcontainer .post .bottom {
+  z-index: 10;
+  font-size: small;
+  margin-left: 50px;
+  display: flex;
+  padding-bottom: 0.3em;
+}
+.postcontainer .post .bottom .reply {
+  margin-left: 1em;
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.postcontainer .post .bottom .time {
+  text-align: start;
+  padding-left: 1em;
+  opacity: 70%;
+}
+.postcontainer .post .bottom .like {
+  opacity: 100%;
+  color: blue;
+  margin-left: 2em;
+  transition-duration: 100ms;
+  cursor: pointer;
+}
+.postcontainer .post .bottom .dislike {
+  margin-left: 2em;
+  opacity: 50%;
+  transition-duration: 100ms;
+  cursor: pointer;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.Sharedpost {
+  padding: 1em;
+  width: 100%;
+  background-color: var(--second-bg-color);
+  min-height: 10em;
+  border-radius: 1em;
+  border: var(--second-border-color) dotted 1px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.modalpost {
+  border-radius: 1em;
+  align-self: center;
+  width: none;
+  width: 80%;
+  background-color: white;
+  border-radius: 1em;
+}
+
+.removeborder {
+  border-bottom: none;
+}
+
+.COMMENTINPUT {
+  display: flex;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+}
+
+.COMMENTINPUT .Commentinput {
+  margin-left: 0.5em;
+  margin-top: 1.5em;
+  margin-right: 0.5em;
+  border: none;
+  resize: none;
+  font-size: large;
+  height: auto;
+  border-bottom: #e5eeff 1px solid;
+  width: 90%;
+}
+
+.COMMENTINPUT .Commentinput:focus {
+  outline: none;
+}
+
+.postprofilecontainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.postprofilecontainer .meta {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5em;
+  align-items: flex-start;
+}
+.postprofilecontainer .meta .firstline {
+  margin-top: 3px;
+  font-size: medium;
+  font-weight: 700;
+  justify-content: center;
+  display: flex;
+}
+.postprofilecontainer .meta .name {
+  font-weight: 600;
+}
+
+.postprofilecontainer .meta .time {
+  font-size: small;
+  font-weight: 500;
+  color: rgb(60, 60, 60);
+  opacity: 70%;
+  margin-left: 0.5em;
+}
+.postprofilecontainer .meta .community {
+  display: flex;
+  color: rgba(0, 89, 255, 0.5);
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-radius: 1em;
+  background-color: var(--main-bg-color);
+  align-items: center;
+}
+.postprofilecontainer .meta .community > div {
+  font-size: small;
+  margin-left: 0.1em;
+}
+
+.postprofilecontainer .meta .community .profilepic {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 10%;
+}
+
+.postcontainer .post .contents .texts .text .rafflereqcontainer .meta {
+  margin-top: 1em;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.post-imgs {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-self: center;
+  justify-content: center;
+  /* max-height: 15em; */
+}
+.post-imgs .post-img {
+  display: block;
+  margin-right: 0.1em;
+  width: 100%;
+  margin-left: 0.1em;
+  position: relative;
+  padding-top: 100%; /* 1:1 ratio */
+  overflow: hidden;
+}
+.post-imgs .post-img img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.7em;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.post-imgs.posted .post-img {
+  padding-top: 0;
+}
+
+.post-imgs.posted .post-img img {
+  width: 10em;
+  height: 10em;
+  position: relative;
+}
+/* .post-imgs .post-img::after {
+  display: block;
+  content: "";
+  padding-bottom: 10%;
+} */
+
+.post .images {
+  margin-top: 1.4em;
+  justify-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.UploadedImageWrapper {
+  width: 100%;
+  margin-bottom: 1em;
+  border-radius: 1em;
+}
+.UploadedImageWrapper .deleteButton {
+  z-index: 100;
+  margin-top: -10em;
+}
+.editButton {
+  font-size: medium;
+  background-color: var(--main-button-text-color);
+  transition-duration: 300ms;
+  border-radius: 1em;
+  padding: 0.5em;
+  color: var(--main-button-bg-color);
+  margin-left: auto;
+}
+.editButton:hover {
+  background-color: var(--main-button-bg-color);
+  border-color: var(--main-button-bg-color);
+  color: var(--main-button-text-color);
+  transition-duration: 300ms;
+}
+
+.profilestatus {
+  display: flex;
+  color: rgb(255, 255, 255);
+  background-color: rgb(94, 142, 70);
+  border-radius: 0.5em;
+  padding: 0.1em 0.5em;
+  padding-left: 0.2em;
+  align-items: center;
+}
+.profilestatus > div {
+  font-size: small;
+  margin-left: 0.2em;
+}
+.profilestatus i {
+  margin-left: 0.6em;
+}
+.profilestatus .profilepic {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0.75em;
+}
+
+.profilestatus .profilepic img {
+  border: rgb(255, 255, 255) solid 1px;
+  background-color: white;
+}
+
+.daoStatus {
+  font-size: small;
+  width: max-content;
+  background-color: #e5eeff;
+  margin-bottom: auto;
+  padding: 0.3em;
+  white-space: nowrap;
+  border-radius: 1em;
+}
+.daoStatus .daoDiv {
+  margin-right: 0.5em;
+  border-radius: 1em;
+  width: 1em;
+  height: 1em;
+  background-color: green;
+}
+
+.daoStatus {
+  font-size: small;
+  width: max-content;
+  background-color: #e5eeff;
+  margin-bottom: auto;
+  padding: 0.3em;
+  white-space: nowrap;
+  border-radius: 1em;
+}
+.daoStatus .daoDiv {
+  margin-right: 0.5em;
+  border-radius: 1em;
+  width: 1em;
+  height: 1em;
+  background-color: green;
+}
+
+.profilestatus .profileDiv {
+  margin-right: 0.5em;
+  border-radius: 1em;
+  width: 1em;
+  height: 1em;
+  background-color: green;
+}
+
+.post-button-line {
+  border: solid var(--main-border-color) 0.4px;
+  margin: 0.4em 0.8em 0em 0.8em;
+}

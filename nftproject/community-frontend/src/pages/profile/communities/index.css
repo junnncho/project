@@ -1,0 +1,66 @@
+.CommunityStatusWrapper {
+  padding-top: 1em;
+}
+.CommunityFrame {
+  background-color: white;
+  z-index: 100;
+  height: 10em;
+  width: 100%;
+  border: #aaaaaa 0.5px solid;
+  box-shadow: 1px 1px 1px 1px #aaaaaa;
+  transition-duration: 300ms;
+  border-radius: 1em;
+  margin-bottom: 1em;
+  display: flex;
+}
+.CommunityFrame .communityBackGround .communityBackGroundFrame {
+  border-bottom-left-radius: 1em;
+  border-top-left-radius: 1em;
+}
+.CommunityFrame .communityBackGround {
+  border-bottom-left-radius: 1em;
+  border-top-left-radius: 1em;
+  height: 100%;
+  width: 13em;
+  object-fit: cover;
+}
+.CommunityFrame .contents {
+  display: flex;
+  padding: 1em;
+}
+.CommunityFrame .communityPictureFrame {
+  border-radius: 1em;
+  height: 8em;
+  width: 8em;
+  margin-left: -4em;
+  padding: 0.5em;
+  border: #aaaaaa 1px solid;
+  background-color: white;
+  border-color: #aaaaaa;
+  box-shadow: 1px 1px 1px 1px #aaaaaa;
+}
+.CommunityFrame .communityPicture {
+  border-radius: 1em;
+  height: 7em;
+  width: 7em;
+  object-fit: contain;
+}
+.CommunityFrame .communityStatus {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.5em;
+}
+.CommunityFrame .communityStatus .communityName {
+  font-size: large;
+  font-weight: bold;
+  margin-right: auto;
+}
+.CommunityFrame .communityStatus .communityDescription {
+  margin-right: auto;
+  margin-top: 0.5em;
+}
+.CommunityFrame .communityStatus .communityVolume {
+  margin-right: auto;
+  margin-top: auto;
+}

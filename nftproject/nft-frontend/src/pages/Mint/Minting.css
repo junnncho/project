@@ -1,0 +1,223 @@
+.mint h2 {
+  font-size: 2.3rem;
+  color: white;
+}
+.mint-main {
+  height: 100vh;
+  text-align: center;
+}
+.mint-main .result-topnav {
+  position: relative;
+  border-bottom-style: double;
+  border-width: 7px;
+  border-color: white;
+  color: white;
+  background-color: rgba(61, 119, 207, 0.982);
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+#board-img2 {
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 50%;
+  height: 80%;
+  z-index: 1;
+  text-align: center;
+}
+
+#board-img {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80vw;
+  height: 100vh;
+  z-index: 1;
+  text-align: center;
+}
+.flex {
+  z-index: 3;
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  width: 65vw;
+}
+.chapter {
+  padding-top: 7vh;
+  font-size: 5vh;
+  z-index: 3;
+  color: white;
+  display: flex;
+}
+
+.mint {
+  padding: 6vh;
+  padding-top: 10vh;
+  height: 85vh;
+  background: url(../../img/패턴.png) repeat;
+  background-size: contain;
+}
+
+.mint2 {
+  display: flex;
+  flex-direction: row;
+  padding: 5vh;
+  height: 78vh;
+  background: skyblue;
+  background-size: contain;
+  align-items: center;
+  justify-content: center;
+}
+.mint2 .content2 {
+  font-size: 10vh;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  border-style: dotted;
+  border-width: 7px;
+  border-color: rgb(2, 59, 61);
+  color: white;
+  background-color: rgba(88, 185, 194, 0.93);
+}
+#myAddress {
+  font-size: 5px;
+}
+@media (max-width: 1500px) {
+  #myAddress {
+    font-size: 3px;
+  }
+}
+
+@media (max-width: 500px) {
+  #board-img {
+    display: none;
+  }
+  .mint {
+    background: rgb(37, 99, 174);
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .mint .first {
+    margin-top: -70px;
+  }
+  .board {
+    height: 400px;
+  }
+}
+
+@media screen and (max-height: 1000px) {
+  .mint .first {
+    margin-top: -30px;
+  }
+
+  .mint h2 {
+    font-size: 1.2rem;
+  }
+  .mint-main p {
+    margin-block-end: 5px;
+    margin-block-start: 5px;
+    font-size: 15px;
+  }
+  .chapter {
+    padding-top: 0vh;
+  }
+  .board {
+    font-size: 20px;
+  }
+  .mint2 {
+    height: 80vh;
+  }
+  .mint2 .content2 {
+    font-size: 5vh;
+  }
+}
+.col-left {
+  padding-top: -100px;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  color: white;
+  z-index: 3;
+}
+
+.board .col-right {
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+}
+
+.mint .first {
+  width: 100%;
+  border-radius: 20px;
+  border-width: 7px;
+  color: white;
+  text-align: center;
+}
+
+.mint .second {
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 0px;
+  border-style: dotted;
+  border-width: 7px;
+  color: white;
+  text-align: center;
+}
+
+.mint button {
+  padding: 16px 32px;
+}
+
+.mint .btn1 {
+  background-color: rgb(122, 176, 207);
+  color: black;
+  font-size: 1vh;
+  font-family: "Wake";
+  border-radius: 3px;
+  transition-duration: 1s;
+}
+.mint .btn1:hover {
+  background-color: rgb(124, 173, 56);
+  color: white;
+  box-shadow: 10px 10px hotpink;
+}
+
+.mint .btn1:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  box-shadow: 0px 0px;
+}
+
+.mint .btn2 {
+  margin-top: 20px;
+  background-color: rgb(206, 180, 108);
+  color: black;
+  font-size: 1vh;
+  font-family: "Wake";
+  border-radius: 10px;
+  transition-duration: 1s;
+  display: inline-block;
+}
+.mint .btn2:hover {
+  background-color: rgb(200, 130, 24);
+  color: white;
+  box-shadow: 10px 10px yellow;
+}
+
+.mint a {
+  color: white;
+}
+
+.mint input {
+  width: 40px;
+}

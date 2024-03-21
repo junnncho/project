@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap");
+
+/* Font */
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+textarea {
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-size: 3px;
+}
+
+/* Buttons */
+.blue-button {
+  border-radius: 0.8em;
+  background-color: var(--main-button-bg-color);
+  color: var(--main-button-text-color);
+  padding: 1em 1.5em;
+  min-width: 3em;
+  line-height: 0;
+  border: solid 3px white;
+  height: 3em;
+  font-weight: 600;
+  transition-duration: 500ms;
+}
+
+.blue-button:hover {
+  background-color: var(--main-button-text-color);
+  border: var(--second-border-color) 1px solid;
+  color: var(--main-button-bg-color);
+  transition-duration: 500ms;
+}
+
+.white-button {
+  border-radius: 0.8em;
+  line-height: 0;
+  background-color: var(--main-button-text-color);
+  color: var(--main-button-bg-color);
+  padding: 1em 1.5em;
+  min-width: 3em;
+  border: solid;
+  height: 3em;
+  transition-duration: 500ms;
+}
+
+.white-button:hover {
+  background-color: var(--main-button-bg-color);
+  color: var(--main-button-text-color);
+  transition-duration: 500ms;
+}
+
+/* Position */
+.left1 {
+  margin-left: 0.5em;
+}
+
+.left2 {
+  margin-left: 1em;
+}
+.right1 {
+  margin-right: 0.5em;
+}
+.right2 {
+  margin-right: 1em;
+}
+.top0 {
+  margin-top: 0em;
+}
+
+.top1 {
+  margin-top: 1em;
+}
+
+.top2 {
+  margin-top: 2em;
+}
+.top3 {
+  margin-top: 3em;
+}
+.top4 {
+  margin-top: 4em;
+}
+.top5 {
+  margin-top: 5em;
+}
+.z0 {
+  z-index: 0;
+}
+.z1 {
+  z-index: 100;
+}
+.z2 {
+  z-index: 200;
+}
+.z3 {
+  z-index: 300;
+}
+
+/* Frame */
+.main-frame {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: var(--main-border-color) 0.5px solid;
+  box-shadow: 1px 1px 1px 1px var(--main-border-color);
+  border-radius: 0.5em;
+  transition-duration: 300ms;
+  overflow: hidden;
+}
+
+.img-full {
+  object-fit: cover;
+}

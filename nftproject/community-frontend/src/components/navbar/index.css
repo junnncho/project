@@ -1,0 +1,79 @@
+/* .header {
+  display : flex;
+  justify-content: right;
+  margin-bottom: 30px;
+  width : 100%;
+} */
+
+.ProfileBar {
+  z-index: 100;
+  display: flex;
+  justify-content: space-evenly;
+  backdrop-filter: blur(10px);
+  background-color: var(--main-button-bg-color);
+  color: var(--main-button-text-color);
+  border-radius: 1em;
+  width: 25em;
+  height: 4rem;
+  align-items: center;
+  margin-right: auto;
+  font-size: 15px;
+  top: 1em;
+  transition-duration: 300ms;
+}
+.ProfileBar:hover {
+  color: var(--main-button-bg-color);
+  background-color: var(--main-bg-color);
+  transition-duration: 300ms;
+}
+.ProfileBar .nav-info {
+  text-align: center;
+}
+
+.ProfileBar .nav-info .address {
+}
+
+.ProfileBar .border {
+  border-left: 1px solid rgb(82, 81, 81);
+  height: 3rem;
+}
+
+.ProfileBar .profile-container {
+  display: flex;
+}
+
+.ProfileBar .ProfileImage {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.ProfileBar .nav-info span {
+  font-size: 14px;
+}
+
+.ProfileBar .nav-info h4 {
+  font-size: 16px;
+}
+
+.ProfileNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.ProfileNav .title {
+  font-weight: 700;
+  border-bottom: rgba(0, 0, 0, 0) solid 5px;
+  transition-duration: 300ms;
+  padding-bottom: 1em;
+}
+.ProfileNav .hovered {
+  border-bottom: var(--main-button-bg-color) inset 5px;
+}
+.ProfileNav .title:hover {
+  border-bottom: var(--main-button-bg-color) solid 5px;
+  padding-bottom: -5px;
+  margin-bottom: -0px;
+  cursor: pointer;
+}

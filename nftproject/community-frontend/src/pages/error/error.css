@@ -1,0 +1,11 @@
+.ErrorPage .text {
+  font-size: 3em;
+  font-weight: 800;
+  margin-top: 3em;
+}
+
+.ErrorPage .go-back {
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+}

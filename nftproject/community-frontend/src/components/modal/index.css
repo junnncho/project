@@ -1,0 +1,207 @@
+.Modalcontainer {
+  z-index: 300;
+  position: fixed;
+  width: 30em;
+  align-self: center;
+  top: 40%;
+  left: 50%;
+  margin-left: -15em;
+  /* background-color: rgba(255, 255, 255, 0.7); */
+  border-radius: 1em;
+  background-color: rgba(229, 238, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+.Modalcontainer .title {
+  width: 100%;
+  padding-top: 1em;
+  font-size: large;
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgba(0, 0, 0.6);
+}
+.Modalcontainer .contents {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.Modalcontainer .buttons {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: auto;
+  height: 3em;
+  width: 100%;
+}
+.Modalcontainer .buttons .button {
+  width: 50%;
+  text-align: center;
+  height: 3em;
+  transition-duration: 300ms;
+}
+.Modalcontainer .buttons .button:hover {
+  transition-duration: 300ms;
+  background-color: rgba(0, 0, 255, 0.8);
+  color: white;
+}
+.Modalcontainer .buttons .yes {
+  border-bottom-left-radius: 1em;
+  padding-top: 1em;
+}
+.Modalcontainer .buttons .no {
+  border-bottom-right-radius: 1em;
+  padding-top: 1em;
+}
+.RangeModal {
+  background-color: white;
+  border-radius: 1em;
+  position: absolute;
+  margin-left: -4em;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+}
+.RangeModal .commucontents {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  border-radius: 1em;
+  padding: 0.3em;
+  width: 100%;
+}
+.RangeModal .commucontents:hover {
+  background-color: #e5eeff;
+  border-radius: 1em;
+  cursor: pointer;
+}
+.RangeModal .commucontents .commupic {
+  width: 2em;
+  height: 2em;
+  border-radius: 0.5em;
+}
+.Modal {
+  background-color: white;
+  border-radius: 1em;
+  position: absolute;
+  border: 1px solid blue;
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+}
+.Modal .commucontents {
+  display: flex;
+  align-items: center;
+  border-radius: 1em;
+  padding: 0.3em;
+}
+.Modal .commucontents:hover {
+  background-color: #e5eeff;
+  border-radius: 1em;
+  cursor: pointer;
+}
+.Modal .commucontents .commupic {
+  width: 2em;
+  height: 2em;
+  border-radius: 0.5em;
+}
+.ContentModal {
+  z-index: 300000;
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.Bigprofile {
+  max-width: 50%;
+  max-height: 70%;
+  border: white 3px solid;
+}
+
+.SharedPostingModal {
+  margin-bottom: auto;
+  width: 100%;
+  max-width: 52em;
+}
+
+.ContentModal .x-button {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  cursor: pointer;
+}
+.ContentModal .x-button i {
+  font-size: 3em;
+  color: rgba(255, 255, 255, 0.589);
+}
+.EditProfileModal {
+  width: 60%;
+  background-color: white;
+  border-radius: 1em;
+  margin-top: 5em;
+  margin-bottom: 4em;
+}
+.EditProfileModal .Edit {
+  padding: 1em;
+  font-weight: 700;
+  font-size: large;
+  border-bottom: 1px solid #e5eeff;
+}
+.EditProfileModal .unitItem {
+  padding-bottom: 1em;
+}
+.EditProfileModal .unitItem .itemTitle {
+  font-size: larger;
+  display: flex;
+  text-align: left;
+  font-weight: 600;
+  margin-right: auto;
+  padding: 1em;
+}
+.EditProfileModal .editButton {
+  font-size: medium;
+  background-color: white;
+  border: solid 1px blue;
+  transition-duration: 300ms;
+  border-radius: 1em;
+  padding: 0.5em;
+  color: blue;
+  margin-left: auto;
+  cursor: pointer;
+}
+.EditProfileModal .unitItem .itemTitle .editButton:hover {
+  background-color: blue;
+  border-color: #074ee8;
+  color: white;
+  transition-duration: 300ms;
+  cursor: pointer;
+}
+
+.EditProfileModal .unitItem .textinput {
+  border: none;
+  resize: none;
+  font-size: x-large;
+  height: auto;
+  color: black;
+}
+.EditProfileModal .unitItem .textinput:focus {
+  outline: none;
+}
+.EditProfileModal .unitItem .bigPicture {
+  width: 7em;
+  height: 7em;
+  border-radius: 4em;
+}
+.EditProfileModal .unitItem .bannerImg {
+  object-fit: contain;
+  width: auto;
+  padding: 1em;
+  height: 17em;
+  border-radius: 1em;
+}

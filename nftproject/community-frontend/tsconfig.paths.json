@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@api": ["src/redux/actions/api_user.ts"],
+      //   "@dummy": ["src/dummy"],
+      //   "@actions/*": ["src/redux/actions/*"],
+      //   "@hooks": ["src/components/hooks"],
+      "@props": ["src/props"]
+    }
+  }
+}

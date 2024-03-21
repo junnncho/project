@@ -1,0 +1,40 @@
+.HomeSearch {
+  /* width: 30%; */
+  display: flex;
+  /* top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+}
+
+.HomeSearch .search {
+  width: 100%;
+  position: center;
+  display: flex;
+}
+
+.HomeSearch .inputBox {
+  width: 45vw;
+  border: 3px solid #000000;
+  border-right: none;
+  padding: 1em;
+  height: 3em;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.HomeSearch .inputBox:focus {
+  color: #013e46;
+}
+
+.HomeSearch .searchButton {
+  width: 2em;
+  height: 2em;
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}

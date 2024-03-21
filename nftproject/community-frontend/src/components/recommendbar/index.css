@@ -1,0 +1,80 @@
+.DailyRecommend .title {
+  font-size: 1.3em;
+  font-weight: 700;
+  padding: 0.5em 0em;
+  text-align: start;
+  padding-left: 1em;
+  border-bottom: #aaaaaa 0.5px inset;
+}
+
+.DailyRecommend .Container {
+  background-color: var(--main-bg-color);
+  border: var(--main-border-color) solid 1px;
+  font-size: 15px;
+  width: 25em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  margin-bottom: 2em;
+}
+.DailyRecommend .Item {
+  width: 100%;
+  height: 5em;
+  display: flex;
+  flex-direction: row;
+  border-bottom: #aaaaaa 0.5px inset;
+}
+
+.DailyRecommend .Item .detail {
+  display: flex;
+}
+
+.DailyRecommend .Item .picture {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin-left: 1em;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.DailyRecommend .Item .info {
+  justify-content: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.DailyRecommend .Item .info .name {
+  margin-left: 1em;
+  margin-right: auto;
+}
+.DailyRecommend .Item .info .due {
+  margin-left: 1em;
+  margin-right: auto;
+}
+.DailyRecommend .Item .join {
+  align-self: center;
+  margin-right: 1em;
+  margin-left: auto;
+  width: 7em;
+  height: 2.5em;
+  border-radius: 1em;
+
+  transition-duration: 300ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.DailyRecommend .Item .join:hover {
+  cursor: pointer;
+}
+
+.DailyRecommend .Container .showmore {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1em;
+  height: 2em;
+  color: var(--main-button-bg-color);
+}

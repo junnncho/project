@@ -1,0 +1,174 @@
+.daocontainer {
+  z-index: 3;
+  max-height: 100000000000000em;
+  opacity: 100%;
+  display: flex;
+  padding: 1em;
+  flex-direction: column;
+  transition-duration: 300ms;
+  transition: max-height opacity 0.3s ease-in;
+  border-radius: 1em;
+  border: var(--second-border-color) dotted 1px;
+  background-color: var(--second-bg-color);
+  padding: 1em;
+  width: 100%;
+  transition-duration: 300ms;
+}
+
+.daocontainer .meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.daoStatus {
+  background-color: white;
+  font-size: small;
+  width: max-content;
+  margin-bottom: auto;
+  padding: 0.3em;
+  border: solid var(--main-border-color) 0.8px;
+  white-space: nowrap;
+  font-weight: 600;
+  color: rgb(61, 61, 61);
+  border-radius: 0.7em;
+}
+.daoStatus .daoDiv {
+  align-self: center;
+  margin-right: 0.5em;
+  margin-left: 0.2em;
+  border-radius: 0.6em;
+  width: 0.6em;
+  height: 0.6em;
+  background-color: var(--main-button-bg-color);
+}
+.daocontainer .meta .username {
+  font-size: medium;
+  font-weight: 700;
+}
+
+.daocontainer .meta .time {
+  font-size: small;
+  font-weight: 100;
+  color: black;
+  opacity: 60%;
+  padding-left: 1em;
+}
+.daocontainer .due {
+  font-weight: 600;
+  font-size: small;
+  margin-top: 1em;
+  margin-left: auto;
+  text-align: end;
+}
+.daocontainer .daoTitle {
+  margin-top: 1em;
+  font-size: x-large;
+  align-self: center;
+}
+.daocontainer .daodescription {
+  margin-top: 2em;
+  margin-right: 0;
+  text-align: left;
+  white-space: pre-wrap;
+}
+.daoDetailContainer .daoInformation {
+  font-size: small;
+  margin-top: 0.5em;
+  text-align: left;
+}
+.daoDetailContainer .daoInformationCategory {
+  margin-top: 1em;
+  width: 100%;
+  font-size: large;
+  font-weight: 500;
+  padding: 0.5em;
+  border-bottom: #e5eeff 1px solid;
+}
+.daocontainer .daopolls {
+  padding-top: 1em;
+  width: 100%;
+}
+.daocontainer .daopolls .daopoll {
+  border: rgb(128, 128, 128) 2px solid;
+  background-color: white;
+  border-radius: 0.5em;
+  text-align: start;
+  margin-top: 0.5em;
+  display: flex;
+  transition-duration: 300ms;
+}
+.daocontainer .daopolls .daopoll:hover {
+  background-color: #d3e2ff;
+  transition-duration: 300ms;
+}
+.daocontainer .daopoll .daofill {
+  padding: 0.5em;
+  padding-left: 1em;
+  background-color: var(--third-button-bg-color);
+  color: var(--main-button-text-color);
+  font-weight: 700;
+  border-radius: 0.5em;
+  margin: 3px;
+  text-align: start;
+  height: 100%;
+}
+.daocontainer .daopoll .daopercentage {
+  margin-left: auto;
+  align-self: center;
+  margin-right: 1.5em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.4);
+}
+.detailButton {
+  background-color: #fcfcfc;
+  color: #5a8499;
+  border-radius: 0.5em;
+  border: solid #676767;
+  transition-duration: 300ms;
+  font-size: small;
+  font-weight: 700;
+  margin-top: 1em;
+  height: 2em;
+}
+.detailButton:hover {
+  background-color: #e5eeff;
+  color: rgb(65, 65, 65);
+  cursor: pointer;
+}
+.daoDetailContainer {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.AccountBookFrame {
+  padding: 1em;
+}
+.AccountBookFrame .walletFromTo {
+  display: flex;
+  font-size: small;
+  justify-content: center;
+}
+.AccountBookFrame .walletFromTo .from {
+  background-color: #e5eeff;
+  padding: 0.3em;
+  border-radius: 1em;
+  display: flex;
+}
+.AccountBookFrame .walletFromTo .to {
+  background-color: #e5eeff;
+  padding: 0.3em;
+  border-radius: 1em;
+  margin-left: 1em;
+  display: flex;
+}
+.AccountBookFrame .amount {
+  margin-top: 0.5em;
+}
+.AccountBookFrame .state {
+  background-color: rgb(57, 255, 57);
+  border-radius: 1em;
+  margin-right: auto;
+  margin-bottom: 1em;
+  font-size: small;
+  padding: 0.4em;
+}

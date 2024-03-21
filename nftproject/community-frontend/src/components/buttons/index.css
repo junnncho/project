@@ -1,0 +1,12 @@
+.OptionButton {
+  margin-right: 1em;
+  background-color: inherit;
+  height: 2em;
+  width: 2em;
+  border-radius: 1em;
+  transition-duration: 300ms;
+}
+.OptionButton:hover {
+  background-color: #e5eeff;
+  transition-duration: 300ms;
+}

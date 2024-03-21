@@ -1,0 +1,19 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  min-height: 101vh;
+}
+
+.Home .Navbar {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 30px;
+  width: 100%;
+  padding: 30px 40px;
+}
+
+/* .Home .lands {
+  font-size: 1.5vh;
+} */

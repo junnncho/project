@@ -1,0 +1,55 @@
+.UnitBackground {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.UnitBackground .background {
+  height: 26.25em;
+  width: 100%;
+}
+.UnitBackground .profile {
+  width: 13em;
+  height: 13em;
+  border-radius: 7em;
+  margin-top: -7em;
+  margin-left: 5vh;
+  border: white 3px solid;
+  background-color: white;
+}
+.UnitBackground .Bigprofile {
+  max-width: 50%;
+  max-height: 70%;
+  border: white 3px solid;
+}
+
+.UnitBackground .second-layout {
+  display: flex;
+  flex-direction: row;
+}
+.UnitBackground .second-layout .username {
+  font-size: x-large;
+  font-weight: 700;
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+.UnitBackground .buttons {
+  margin-top: 0.7em;
+  margin-left: auto;
+  margin-right: 0.5em;
+}
+.UnitBackground .Communities {
+  margin-left: 25vh;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+.UnitBackground .Communities .profilepic {
+  width: 3em;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  border: 1px white solid;
+  background-color: white;
+  margin-left: -1em;
+}

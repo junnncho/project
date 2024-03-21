@@ -1,0 +1,26 @@
+.MyCommunity .circle {
+  width: 3em;
+  height: 3em;
+  border-radius: 2em;
+  vertical-align: middle;
+  border: 1px black solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2em;
+}
+.MyCommunity .list {
+  margin-top: 2.5em;
+}
+
+.MyCommunity .title {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.carousel__next-button {
+  background-color: rgba(0, 0, 0, 0);
+}
+.carousel__back-button {
+  background-color: rgba(0, 0, 0, 0);
+}

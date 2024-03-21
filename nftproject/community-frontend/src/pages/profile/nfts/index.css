@@ -1,0 +1,42 @@
+.NFTs {
+  display: flex;
+  flex-direction: column;
+}
+.NFTs .information {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 7em;
+}
+
+.NFTs .collection {
+  display: flex;
+  flex-direction: column;
+  border-bottom: #aaaaaa 2px solid;
+  transition-delay: 1s;
+}
+
+.NFTs .collection .logo {
+  width: 6em;
+  height: 6em;
+  border-radius: 1em;
+  margin-left: 2em;
+}
+.NFTs .collection .name {
+  margin-left: 2em;
+  font-weight: 700;
+}
+.NFTs .collection .carousel {
+  height: 10em;
+  opacity: 100%;
+  margin-top: 1em;
+  transition-duration: 300ms;
+}
+.NFTs .collection .disabled {
+  z-index: -1;
+  height: 0;
+  opacity: 0%;
+  margin-top: 1em;
+  transition-delay: 300ms;
+  transition-duration: 300ms;
+}

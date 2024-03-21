@@ -1,0 +1,58 @@
+@import url("//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
+
+.spoka * {
+  font-family: "Spoqa Han Sans", "Spoqa Han Sans JP", "Sans-serif";
+}
+
+body {
+  --main-bg-color: #e5eeff;
+  --second-bg-color: #f4f7fc;
+  --main-button-bg-color: #336ae0;
+  --main-button-text-color: white;
+  --sub-button-bg-color: var(--main-bg-color);
+  --sub-button-text-color: blue;
+  --third-button-bg-color: #7792c7;
+  --main-border-color: #aaaaaa;
+  --second-border-color: #6b98f880;
+  --third-border-color: rgba(104, 130, 179, 0.233);
+  --sidebar-width: 280px;
+  --border-radius: 12px;
+  --topnav-height: 110px;
+  --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+/* a:hover {
+  color: var(--main-color);
+} */
+
+button {
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  color: var(--txt-color);
+}
+
+ul {
+  list-style-type: none;
+}
+
+input {
+  border: 2px solid transparent;
+  outline: 0;
+}
+
+input:focus {
+  border: 2px solid var(--main-color);
+}

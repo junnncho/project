@@ -1,0 +1,21 @@
+.COMMUNITYSTATUS {
+  display: flex;
+}
+.COMMUNITYSTATUS .UnitStatus {
+  display: flex;
+  margin-right: 1em;
+  flex-direction: column;
+}
+.COMMUNITYSTATUS .UnitStatus .title {
+  padding-bottom: 0.3em;
+  font-size: 14px;
+  font-weight: 700;
+}
+.COMMUNITYSTATUS .UnitStatus .numbers {
+  font-size: 14px;
+}
+.UserStatus {
+  margin-right: 0.5em;
+  margin-left: auto;
+  margin-top: auto;
+}

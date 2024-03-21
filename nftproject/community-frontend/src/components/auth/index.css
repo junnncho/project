@@ -1,0 +1,10 @@
+.connectWallet button {
+  font-weight: 700;
+  font-size: 15px;
+  margin-right: auto;
+}
+
+.connectWallet {
+  top: 1em;
+  position: sticky;
+}

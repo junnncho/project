@@ -1,0 +1,48 @@
+.Profile {
+  display: flex;
+  flex-direction: column;
+  width: 42em;
+}
+
+.Profile .detail {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+.Profile .description {
+  font-weight: 600;
+  text-align: left;
+  margin-left: 5vh;
+  margin-bottom: 3vh;
+}
+.Profile .buttons {
+  display: flex;
+}
+/* .Profile .background .buttons > button {
+  transition-duration: 300ms;
+  border-color: #074ee8;
+  border: solid;
+}
+.Unit .background .buttons > button:hover {
+  background-color: white;
+  border-color: #074ee8;
+  color: #074ee8;
+} */
+.profilepic {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+}
+.smallprofilepic {
+  height: 40px;
+  width: 40px;
+  border-radius: 25px;
+}
+.Profile .buttons .etc {
+  margin-right: 1em;
+}
+.Profile .buttons > button {
+  transition-duration: 300ms;
+}

@@ -1,0 +1,36 @@
+.INFO {
+  padding-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  border-radius: 1em;
+  width: 80%;
+  background-color: #e5eeff !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1em;
+}
+.INFO .title {
+  margin-right: auto;
+  margin-left: 13%;
+  opacity: 80%;
+  font-size: large;
+  margin-bottom: 1em;
+}
+.INFO .SNS {
+  text-align: left;
+  border-top: 1px solid #aaaaaa;
+  width: 80%;
+  margin-bottom: 3em;
+}
+.SNS .unitsns {
+  padding-top: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.SNS .unitsns .profileimg {
+  width: 2em;
+  height: 2em;
+}

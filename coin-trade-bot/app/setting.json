@@ -1,0 +1,7 @@
+{
+  "number": 3,
+  "margin": 0.005,
+  "leverage": 10,
+  "stopLoss": -0.03,
+  "level": "high"
+}

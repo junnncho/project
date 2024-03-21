@@ -1,0 +1,64 @@
+:root {
+  --main-node-bg: #d9c57d;
+  --main-node-text: #000000;
+  --content-bg: #d9d67e;
+  --content-text: #000000;
+  --flow-bg: #e7acac;
+  --flow-text: #000000;
+  --edge: #2561fa;
+  --edge-text: #000000;
+}
+
+.main-node {
+  background-color: var(--main-node-bg);
+  color: var(--main-node-text);
+  border-color: var(--flow-text);
+  transition: color 0.3s;
+  transition: border-color 0.3s;
+}
+
+.main-node input {
+  color: var(--main-node-text);
+}
+
+.content-theme {
+  background-color: var(--content-bg);
+  color: var(--content-text);
+  transition: color 0.3s;
+  /* transition-duration: 0.3s; */
+}
+
+.content-theme input {
+  color: var(--content-text);
+}
+
+.edge-color {
+  stroke: var(--edge);
+  transition-duration: 0.3s;
+}
+
+.edge-node {
+  background-color: var(--edge);
+  color: var(--edge-text);
+}
+
+.sub-node {
+  background-color: var(--edge);
+  color: var(--edge-text);
+  transition-duration: 0.3s;
+}
+
+.sub-node input {
+  color: var(--edge-text);
+}
+
+.mainflow {
+  background-color: var(--flow-bg);
+  color: var(--flow-text);
+  transition-duration: 0.3s;
+}
+
+.content-theme .excalidraw {
+  --swatch-color: var(--content-bg);
+  --default-bg-color: red;
+}

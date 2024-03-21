@@ -1,0 +1,76 @@
+export const initialValue = {
+  color: {
+    mainNode: '#ffffff',
+    edge: '#000000',
+    flowBg: '#deafaf',
+    contentBg: '#fbeabc',
+  },
+  nodes: [
+    {
+      id: 'root-image',
+      type: 'image',
+      data: { label: 'NoteBrain', size: 60 },
+      position: { x: 0, y: 0 },
+      deletable: false,
+    },
+    {
+      id: 'root-text',
+      type: 'text',
+      data: { label: 'NoteBrain', size: 60 },
+      position: { x: 270, y: 1300 },
+      deletable: false,
+      parentNode: 'root-image',
+    },
+    {
+      id: 'login-info',
+      type: 'login',
+      data: { label: 'My Info', size: 30 },
+      position: { x: -800, y: 210 },
+      parentNode: 'root-text',
+      deletable: false,
+      // dragHandle: ".dragHandle",
+    },
+    {
+      id: 'config',
+      type: 'text',
+      data: { label: 'Config', size: 40 },
+      position: { x: 670, y: 1000 },
+      deletable: false,
+      parentNode: 'root-text',
+    },
+    {
+      id: 'change-main',
+      type: 'color',
+      data: { label: 'Main Theme', size: 30 },
+      position: { x: 1500, y: 130 },
+      parentNode: 'config',
+      deletable: false,
+    },
+  ],
+  edges: [
+    {
+      id: 'root-image',
+      source: 'root-image',
+      target: 'root-text',
+      data: { size: 60 },
+    },
+    {
+      id: 'root-text1',
+      source: 'root-text',
+      target: 'login-info',
+      data: { size: 60 },
+    },
+    {
+      id: 'root-text2',
+      source: 'root-text',
+      target: 'config',
+      data: { size: 60 },
+    },
+    {
+      id: 'config1',
+      source: 'config',
+      target: 'change-main',
+      data: { size: 40 },
+    },
+  ],
+};

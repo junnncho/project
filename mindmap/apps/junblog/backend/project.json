@@ -1,0 +1,74 @@
+{
+  "name": "junblog/backend",
+  "sourceRoot": "apps/junblog/backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/junblog/backend",
+        "main": "apps/junblog/backend/src/main.ts",
+        "tsConfig": "apps/junblog/backend/tsconfig.app.json",
+        "assets": ["apps/junblog/backend/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/junblog/backend/webpack.config.js",
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "script": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cross-env  ENVIRONMENT={args.env} ts-node --project tsconfig.app.json -r tsconfig-paths/register --transpile-only ./src/{args.file}.ts "
+        ],
+        "cwd": "apps/junblog/backend",
+        "parallel": false
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "junblog/backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "junblog/backend:build:development"
+        },
+        "production": {
+          "buildTarget": "junblog/backend:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/junblog/backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/junblog/backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

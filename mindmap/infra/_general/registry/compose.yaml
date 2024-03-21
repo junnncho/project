@@ -1,0 +1,35 @@
+# mkdir -p auth && htpasswd -Bbn <id> <password> >> auth/htpasswd
+#docker run –entrypoint htpasswd registry:2.7.0  -Bbn test_realm_name test_passwd > /data/auth/htpasswd
+version: '3.9'
+
+networks:
+    docker-connection:
+        driver: bridge
+
+services:
+    docker-registry:
+        image: registry:2
+        container_name: docker-registry
+        ports:
+            - "5000:5000"
+        restart: unless-stopped
+        environment:
+            REGISTRY_AUTH: htpasswd
+            REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+            REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+            REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+        volumes:
+            - ./app/data:/data
+            - ./app/auth:/auth
+        networks:
+            - docker-connection
+        entrypoint:
+
+            # registry-web:
+            #     image: hyper/docker-registry-web:latest
+            #     volumes:
+            #         - './app/reg_web/config.yml:/conf/config.yml:ro'
+            #     ports:
+            #         - 8000:8080
+            #     networks:
+            #         - docker-connection

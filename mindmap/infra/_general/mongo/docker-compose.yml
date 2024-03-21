@@ -1,0 +1,51 @@
+version: '3.9'
+
+networks:
+  mongoCluster:
+    driver: bridge
+  default:
+    name: mongoCluster
+
+services:
+
+  mongo1:
+    image: mongo:latest
+    hostname: mongo1
+    container_name: mongo1
+    restart: always
+    ports:
+      # 로컬 27017 포트로 요청이 들어오면 컨테이너의 27017 포트로 리다이렉트되도록 설정
+      - 27017:27017
+    volumes:
+      - ./data/db/replica/mongo1:/data/db
+      - ./mongodb.key:/etc/mongodb.key 
+      - ./scripts/rs-init.sh:/scripts/rs-init.sh
+
+    command: ["/usr/bin/mongod","--replSet", "myReplicaSet", "--keyFile", "/etc/mongodb.key", "--bind_ip_all","--auth"]
+  mongo2:
+    image: mongo:latest
+    hostname: mongo2
+    container_name: mongo2
+    restart: always
+      
+    depends_on:
+      - mongo1
+    ports:
+      - 27018:27017
+    volumes:
+      - ./data/db/replica/mongo2:/data/db
+      - ./mongodb.key:/etc/mongodb.key
+    command: ["/usr/bin/mongod","--replSet", "myReplicaSet", "--keyFile", "/etc/mongodb.key", "--bind_ip_all","--auth"]
+  mongo3:
+    image: mongo:latest
+    hostname: mongo3
+    container_name: mongo3
+    restart: always
+    depends_on:
+      - mongo2
+    ports:
+      - 27019:27017
+    volumes:
+      - ./data/db/replica/mongo3:/data/db
+      - ./mongodb.key:/etc/mongodb.key
+    command: ["/usr/bin/mongod","--replSet", "myReplicaSet", "--keyFile", "/etc/mongodb.key", "--bind_ip_all","--auth"]

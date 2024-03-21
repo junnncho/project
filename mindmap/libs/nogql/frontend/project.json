@@ -1,0 +1,43 @@
+{
+  "name": "nogql/frontend",
+  "sourceRoot": "libs/nogql/frontend/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nogql/frontend",
+        "tsConfig": "libs/nogql/frontend/tsconfig.lib.json",
+        "project": "libs/nogql/frontend/package.json",
+        "entryFile": "libs/nogql/frontend/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "swc",
+        "assets": [
+          {
+            "glob": "libs/nogql/frontend/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/nogql/frontend/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/nogql/frontend"],
+      "options": {
+        "jestConfig": "libs/nogql/frontend/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

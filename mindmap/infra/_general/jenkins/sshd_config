@@ -1,0 +1,56 @@
+# 파일 경로: /home/hashmoss/docker/jenkins/sshd_config
+
+# 포트 번호 설정
+Port 22
+
+# 프로토콜 버전 설정
+Protocol 2
+
+# 루트 로그인 허용 여부
+PermitRootLogin yes
+
+# 비밀번호 인증 허용 여부
+PasswordAuthentication no
+
+# 공개 키 인증 허용 여부
+PubkeyAuthentication yes
+
+# 비밀번호 인증 사용 시 패스워드 최소 길이 설정
+; MinPasswordLength 8
+
+# X11 포워딩 허용 여부
+; X11Forwarding yes
+
+# TCP 포워딩 허용 여부
+; AllowTcpForwarding yes
+
+# 사용자 홈 디렉토리에서 .ssh 디렉토리 생성 여부
+StrictModes yes
+
+# 로그 레벨 설정
+; LogLevel INFO
+
+# 호스트 기반 인증 허용 여부
+; HostBasedAuthentication no
+
+# 비밀번호 인증 실패 시 잠금 설정
+MaxAuthTries 3
+
+# 비밀번호 인증 실패 시 잠금 시간 설정
+LoginGraceTime 120
+
+# 사용자가 로그인할 수 있는 그룹 제한
+; AllowGroups sshusers
+
+# 사용자가 로그인할 수 없는 그룹 제한
+; DenyGroups sshdenyusers
+
+# 사용자가 로그인할 수 있는 사용자 제한
+; AllowUsers sshalloweduser
+
+# 사용자가 로그인할 수 없는 사용자 제한
+; DenyUsers sshdenyuser
+
+# 사용자가 로그인할 수 있는 IP 주소 제한
+; AllowHosts 192.168.0.1 192.168.0.2 183.107.1.185
+

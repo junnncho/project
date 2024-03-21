@@ -1,0 +1,34 @@
+{
+  "name": "nogql/module",
+  "sourceRoot": "libs/nogql/module/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nogql/module",
+        "tsConfig": "libs/nogql/module/tsconfig.lib.json",
+        "packageJson": "libs/nogql/module/package.json",
+        "main": "libs/nogql/module/src/index.ts",
+        "assets": ["libs/nogql/module/*.md", "libs/nogql/module/**/*.jpg"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/nogql/module/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/nogql/module"],
+      "options": {
+        "jestConfig": "libs/nogql/module/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,175 @@
+pipeline { 
+    agent any 
+    environment {
+        BRANCH = "$env.BRANCH_NAME"
+        BUILD_CONF = credentials("github-signin")
+        DOCKER_CONF = credentials("docker-registry")
+        REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
+        DOCKER_REPO = "junjs"
+        ALL_CLIENTS = "junblog/frontend"
+        ALL_SERVERS = "junblog/backend"
+        SERVER_LIBS="nogql/module,nogql/util-server"
+    }
+    tools {
+        nodejs "node-jenkins"
+    }
+    stages {
+        stage("Boot"){
+            steps{
+                echo "MY BRANCH IS $env.BRANCH_NAME $env.TELEGRAM_CHAT_ID $REPO_NAME $BRANCH"
+                // git branch: BRANCH, credentialsId: 'github-secret', url: 'https://github.com/junnncho/junJS'
+                // load ".jenkins.conf"
+                telegramSend message: "Build Start - $env.JOB_NAME $env.BUILD_NUMBER", chatId: env.TELEGRAM_CHAT_ID
+                // sh "ls -al"
+                // sh "cat ./result.txt"
+                // sh "cp $BUILD_CONF test.txt"
+                // sh "cat test.txt"
+                sh "pwd"
+                load "./test.groovy"
+                echo "DB_URL: $DB_URL"
+                echo "DB_URL2: $env.DB_URL2"
+                echo "GIT PREV $env.GIT_PREVIOUS_SUCCESSFUL_COMMIT"
+                sh "pnpm install -w --no-frozen-lockfile"
+                sh "nx reset"
+                sh 'echo $DOCKER_CONF_PSW | docker login $REG_URL -u $DOCKER_CONF_USR --password-stdin'
+            }
+        }
+
+                stage("Prepare Build"){
+                    steps{
+                        sh "mkdir -p ./node_modules && mkdir -p ./dist && touch ./dummy.js && chmod -R 777 ./dist"
+                        // sh "find . -maxdepth 1 ! -path . ! \\( -name node_modules -or -name package.json -or -name dist -or -name .git \\) -print0 | xargs -0 rm -r"
+                        script {
+                            commit = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: "HEAD"
+                            affected = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ? (sh (script: "pnpm nx print-affected --type=app --select=projects --base=$env.GIT_PREVIOUS_SUCCESSFUL_COMMIT", returnStdout: true).trim()) : "$ALL_CLIENTS,$ALL_SERVERS"
+                            echo "AFFECTED: $affected"
+                            AFFECTED = affected.tokenize(", ");
+                            CLIENTS = AFFECTED.intersect(ALL_CLIENTS.tokenize(","));
+                            SERVERS = AFFECTED.intersect(ALL_SERVERS.tokenize(","));
+                            ALL_CLIENTS.tokenize(",").each { app -> 
+                                echo "CLIENTAPP: $app ${BRANCH}" 
+                                def envPath = "/var/jenkins_secret/$REPO_NAME/apps/$app/env/env.${BRANCH}.ts";
+                                sh "cp $envPath ./apps/$app/env/env.ts"
+                            }
+                            ALL_SERVERS.tokenize(",").each { app -> 
+                                echo "BACKAPPAPP: $app ${BRANCH}"  
+                                def envPath = "/var/jenkins_secret/$REPO_NAME/apps/$app/src/environments/environment.${BRANCH}.ts";
+                                    sh "cp $envPath ./apps/$app/src/environments/environment.ts"
+                            }
+                            // SERVER_LIBS.tokenize(",").each { app -> 
+                            //     def envName = "$REPO_NAME-" + app.tokenize("/").join("-") + "-env-testing";
+                            //     withCredentials([file(credentialsId: "$envName", variable: "ENV")]) {
+                            //         sh "cp $ENV ./libs/$app/src/_environments/environment.ts"
+                            //     }
+                            // }
+                        }
+                    }
+                }
+        stage("Build"){
+            steps {
+                script {
+                    BUILD_PROJECTS = (SERVERS + CLIENTS).join(",");
+                    echo "BUILD_PROJECTS: $BUILD_PROJECTS"
+                    BUILD_SERVERS = SERVERS.join(",");
+                    BUILD_CLIENTS = CLIENTS.join(",");
+                    if(BUILD_PROJECTS.length() >=1) {
+
+
+                        if(BUILD_SERVERS.length() >=1) {
+                            sh "nx run-many --target=build --projects=$BUILD_SERVERS --parallel=1"
+                        }
+                        if(BUILD_CLIENTS.length() >=1) {
+                            sh "nx run-many --target=build --projects=$BUILD_CLIENTS --parallel=1"
+                        }
+                        sh "nx graph --file=dist/graph.json"
+                        sh "pnpm cross-env DEPLOY_APPS=$BUILD_PROJECTS ts-node infra/_general/makeDocker.ts"
+                        sh "ls -al"
+                    }
+                }                   
+            }
+        }
+        stage("Dockerize"){
+            steps {
+   
+                script {
+                    def dockerizes = [:]
+                    def maxConcurrentJobs = 4
+                    (CLIENTS + SERVERS).each { app -> 
+                        dockerizes[app] = {
+                            sh "mkdir -p ./dist/apps/$app" 
+                            sh "find ./apps/$app -name *.env -exec cp {} ./dist/apps/$app \\;"
+                            sh "find ./apps/$app \\( -type d -name dist \\) -exec rsync -avz {}/ ./dist/apps/$app/ \\;"
+                            sh "cd ./dist/apps/$app && docker build -t $REG_URL/$DOCKER_REPO/$app:$BRANCH-$env.BUILD_NUMBER --label repo=$REPO_NAME --label branch=$BRANCH --label buildNum=$env.BUILD_NUMBER ."
+                            // sh "cd ./dist/apps/$app && docker build . -t $REG_URL/$REPO_NAME/$app:$BRANCH-$env.BUILD_NUMBER\" --label=\"repo=$REPO_NAME\" --label=\"branch=$BRANCH\" --label=\"buildNum=$env.BUILD_NUMBER"
+                            sh "docker image tag $REG_URL/$DOCKER_REPO/$app:$BRANCH-$env.BUILD_NUMBER $REG_URL/$DOCKER_REPO/$app:$BRANCH-live"
+                            sh "docker push $REG_URL/$DOCKER_REPO/$app:$BRANCH-live"
+
+                        }
+                    }
+                    def totalJobs = dockerizes.size()
+                    def totalBranches = totalJobs / maxConcurrentJobs
+                    def jobNames = dockerizes.keySet()
+                    def jobPlans = dockerizes.values()
+                    for (int branch = 0; branch < totalBranches; branch++) {
+                        def start = branch * maxConcurrentJobs
+                        def end = ((branch + 1) * maxConcurrentJobs < totalJobs ? (branch + 1) * maxConcurrentJobs : totalJobs) - 1
+                        def jobs = [:]
+                        // stage("Dockerize $branch") {    
+                        (start..end).each { index ->
+                            jobs[jobNames[index]] = jobPlans[index]
+                        }
+                        parallel jobs
+                        // }
+                    }
+                }
+            }
+        }
+
+
+        stage("Deploy"){
+            steps {
+                script {
+                    def deploys = [:]
+                    sh "chmod +x infra/_general/registry/update-container.sh"
+                    sh "chmod +x infra/_general/jenkins/getEnvs.sh"
+                    (ALL_SERVERS + "," + ALL_CLIENTS).tokenize(",").each { app -> 
+                        def orgName = app.tokenize("/")[0]
+                        def appName = app.tokenize("/")[1]
+                        def key = "$REPO_NAME-" + app.tokenize("/").join("-") + "-env-$BRANCH"
+                        if((SERVERS).contains(app)) {
+                            deploys[app] = {
+                                sh "infra/_general/registry/update-container.sh SERVER $key $REG_URL/$DOCKER_REPO/$app:$BRANCH-live"
+                            }
+                        } else if((CLIENTS).contains(app)) {
+                            deploys[app] = {
+                                sh "infra/_general/registry/update-container.sh CLIENT $key $REG_URL/$DOCKER_REPO/$app:$BRANCH-live"
+                            }
+
+                        // } else {
+                        //     deploys[app] = {
+                        //     }
+                        }
+                    }
+                    
+                    parallel deploys
+                }
+            }
+        }
+        stage("Cleanup"){
+            parallel {
+                stage("Clean Master Registry"){
+                    steps{
+                        sh "cd infra/_general/registry && chmod +x cleanup-registry.sh && ./cleanup-registry.sh"
+                    }
+                }
+                stage("Clean Build Registry"){
+                    steps {
+                        // discordSend description: "Build Finished! Cleaning up... - $env.JOB_NAME $env.BUILD_NUMBER", link: env.BUILD_URL, result: currentBuild.currentResult, title: env.JOB_NAME, webhookURL: env.DISCORD_WEBHOOK
+                        sh "cd infra/_general/registry && chmod +x cleanup-agent.sh && ./cleanup-agent.sh $REG_URL/$DOCKER_REPO $BRANCH $env.BUILD_NUMBER"
+                    }
+                }
+            }
+        }
+    }
+}
+ 

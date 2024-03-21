@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  jenkins:
+    # image: jenkins/jenkins:lts
+    container_name: jenkins
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./home:/var/jenkins_home
+      - ./secret:/var/jenkins_secret
+      - ~/docker/registry/app/data/docker/registry/v2/repositories:/var/docker_repo:ro
+    ports:
+      - "5001:8080"
+      - "5002:22"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    privileged: true
+    user: root
+    environment:
+      TZ: "Asia/Seoul"

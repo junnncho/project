@@ -3,6 +3,7 @@
 ## 개발 스택
 
 - **nft-frontend**: React & JavaScript
+- **blockchain**: Solidity
 - **discord-bot**: Python & Nodejs
 - **community-frontend**: React & TypeScript
 - **community-backend**: Nestjs
